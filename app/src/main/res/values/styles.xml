@@ -10,6 +10,14 @@
         <item name="windowNoTitle">true</item>
     </style>
 
+    <!--toolbar样式-->
+    <style name="toolbar_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">?actionBarSize</item>
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="contentInsetStart">0dp</item>
+    </style>
+
     <!--
         提供MoreFragment布局中TextView的样式
         android:layout_height="wrap_content"

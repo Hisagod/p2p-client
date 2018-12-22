@@ -88,7 +88,7 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-
+        binding.setContr(this);
     }
 
     /**

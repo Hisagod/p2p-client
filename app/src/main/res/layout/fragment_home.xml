@@ -7,11 +7,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/common_title"></include>
+        <android.support.v7.widget.Toolbar style="@style/toolbar_style">
 
-        <com.atguigu.p2pinvest0828.ui.MyScrollView
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:text="首页"
+                    android:textColor="@android:color/white"
+                    android:textSize="18sp" />
+            </RelativeLayout>
+        </android.support.v7.widget.Toolbar>
+
+        <android.support.v4.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -79,10 +94,7 @@
                         android:padding="5dp"
                         android:text="高额收益"
                         android:textColor="@color/home_back_unselected" />
-
-
                 </LinearLayout>
-
 
                 <com.atguigu.p2pinvest0828.ui.RoundProgress
                     android:id="@+id/roundPro_home"
@@ -117,12 +129,9 @@
                         android:layout_height="wrap_content"
                         android:text="10% + 2%"
                         android:textColor="@color/product_detail_common"
-                        android:textSize="20sp"
-
-                        />
+                        android:textSize="20sp" />
 
                 </LinearLayout>
-
 
                 <Button
                     android:layout_width="match_parent"
@@ -135,7 +144,6 @@
                     android:textColor="@color/white"
                     android:textSize="30sp" />
 
-
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -143,11 +151,7 @@
                     android:drawableLeft="@drawable/guarantee_icon"
                     android:text="风险保障金由硅谷银行监管"
                     android:textColor="@color/home_back_unselected" />
-
             </LinearLayout>
-
-
-        </com.atguigu.p2pinvest0828.ui.MyScrollView>
-
+        </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
 </layout>
