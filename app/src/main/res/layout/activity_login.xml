@@ -48,6 +48,8 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
                 android:orientation="vertical">
 
                 <android.support.design.widget.TextInputLayout
@@ -84,17 +86,32 @@
                         android:textSize="14sp" />
                 </android.support.design.widget.TextInputLayout>
 
-                <Button
+                <android.support.v7.widget.AppCompatButton
                     android:id="@+id/btn_login"
                     android:layout_width="match_parent"
                     android:layout_height="40dp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginTop="15dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/btn_01"
+                    android:background="@color/colorPrimary"
+                    android:foreground="?selectableItemBackground"
                     android:text="登　录"
                     android:textColor="#ffffff"
-                    android:textSize="16sp" />
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="right"
+                    android:layout_marginTop="20dp"
+                    android:onClick="@{()->contr.register()}"
+                    android:text="注册"
+                    android:textColor="@android:color/black"
+                    android:textSize="14sp" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.1dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@color/color_c3c3c3" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>
