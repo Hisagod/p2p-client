@@ -11,6 +11,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.aib.view.fragment.BaseFragment;
+import com.aib.viewmodel.SplashViewModel;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.atguigu.p2pinvest0828.R;
@@ -32,8 +33,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeFragment extends BaseFragment<ViewDataBinding> {
+import javax.inject.Inject;
 
+public class HomeFragment extends BaseFragment<ViewDataBinding> {
     @Override
     public int getResId() {
         return R.layout.fragment_home;
@@ -41,6 +43,5 @@ public class HomeFragment extends BaseFragment<ViewDataBinding> {
 
     @Override
     public void initData(@Nullable Bundle savedInstanceState) {
-
     }
 }

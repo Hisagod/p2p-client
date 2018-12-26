@@ -175,7 +175,7 @@ public class AssetsFragment extends BaseFragment<FragmentAssetsBinding> {
             @android.support.annotation.Nullable
             @Override
             public String doInBackground() throws Throwable {
-                return SPUtils.getInstance().getString(Constants.TOKEN);
+                return SPUtils.getInstance().getString(Constants.INSTANCE.getTOKEN());
             }
 
             @Override

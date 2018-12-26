@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.view.View;
 import android.widget.Toast;
 
-import com.atguigu.p2pinvest0828.common.MyApplication;
+import com.aib.P2pApplication;
 
 /**
  * 专门提供为处理一些UI相关的问题而创建的工具类，
@@ -14,11 +14,11 @@ import com.atguigu.p2pinvest0828.common.MyApplication;
 public class UIUtils {
 
     public static Context getContext(){
-        return MyApplication.context;
+        return P2pApplication.Companion.getContext();
     }
 
     public static Handler getHandler(){
-        return MyApplication.handler;
+        return P2pApplication.Companion.getHandler();
     }
 
     //返回指定colorId对应的颜色值
@@ -61,7 +61,7 @@ public class UIUtils {
     //判断当前线程是否是主线程
     private static boolean isInMainThread() {
         int currentThreadId = android.os.Process.myTid();
-        return MyApplication.mainThreadId == currentThreadId;
+        return P2pApplication.Companion.getMainThreadId() == currentThreadId;
 
     }
 

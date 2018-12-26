@@ -18,13 +18,15 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.widget.TextView;
 
+import com.aib.viewmodel.SplashViewModel;
 import com.alibaba.fastjson.JSON;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.bean.UpdateInfo;
 import com.atguigu.p2pinvest0828.common.AppNetConfig;
-import com.atguigu.p2pinvest0828.databinding.ActivityWelcomeBinding;
+import com.atguigu.p2pinvest0828.databinding.ActivitySplashBinding;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.BarUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -37,9 +39,12 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
+import javax.inject.Inject;
 
-public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding> {
 
+public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
+    @Inject
+    SplashViewModel vm;
     private static final int TO_MAIN = 1;
     private static final int DOWNLOAD_VERSION_SUCCESS = 2;
     private static final int DOWNLOAD_APK_FAIL = 3;
@@ -53,7 +58,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding> {
             switch (msg.what) {
                 case TO_MAIN:
                     finish();
-                    startActivity(new Intent(WelcomeActivity.this, MainActivity.class));
+                    startActivity(new Intent(SplashActivity.this, MainActivity.class));
                     break;
                 case DOWNLOAD_VERSION_SUCCESS:
                     //获取当前应用的版本信息
@@ -65,7 +70,7 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding> {
                         UIUtils.toast("当前应用已经是最新版本", false);
                         toMain();
                     } else {
-                        new AlertDialog.Builder(WelcomeActivity.this)
+                        new AlertDialog.Builder(SplashActivity.this)
                                 .setTitle("下载最新版本")
                                 .setMessage(updateInfo.desc)
                                 .setPositiveButton("确定", new DialogInterface.OnClickListener() {
@@ -252,11 +257,13 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding> {
 
     @Override
     protected int getResId() {
-        return R.layout.activity_welcome;
+        return R.layout.activity_splash;
     }
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
+        BarUtils.setStatusBarAlpha(this, 0);
+
         new CountDownTimer(3000, 1000) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -271,5 +278,6 @@ public class WelcomeActivity extends BaseActivity<ActivityWelcomeBinding> {
 
         //联网更新应用
 //by hlp        updateApkFile();
+
     }
 }

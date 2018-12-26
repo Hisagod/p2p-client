@@ -31,20 +31,20 @@
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
     <application
-        android:name=".common.MyApplication"
+        android:name="com.aib.P2pApplication"
         android:allowBackup="true"
         android:icon="@mipmap/app_icon"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.aib.view.activity.MainActivity" />
-        <activity android:name="com.aib.view.activity.WelcomeActivity">
+        <activity android:name="com.aib.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name="com.aib.view.activity.MainActivity" />
         <activity android:name="com.aib.view.activity.LoginActivity" />
         <activity android:name=".activity.UserInfoActivity" />
         <activity

@@ -69,7 +69,7 @@
                         android:inputType="phone"
                         android:maxLength="11"
                         android:maxLines="1"
-                        android:onTextChanged="@{contr.onPhoneTextChange}"
+                        android:onTextChanged="@{contr::onPhoneTextChange}"
                         android:singleLine="true"
                         android:textColor="#5c5c5c"
                         android:textSize="14sp" />
