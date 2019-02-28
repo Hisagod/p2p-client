@@ -7,7 +7,7 @@ import retrofit2.http.FormUrlEncoded
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("register")
+    @POST(NetConstants.register)
     @FormUrlEncoded
     fun REGISTER(@Field("phone") phone: String, @Field("pwd") pwd: String): Observable<BaseEntity<String>>
 }

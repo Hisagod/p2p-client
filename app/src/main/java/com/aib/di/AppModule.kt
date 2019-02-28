@@ -1,6 +1,7 @@
 package com.aib.di
 
 import com.aib.net.ApiService
+import com.aib.net.NetConstants
 import com.aib.utils.Constants
 import dagger.Module
 import dagger.Provides
@@ -23,7 +24,7 @@ class AppModule {
         return Retrofit.Builder()
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
-                .baseUrl(Constants.BASE_URL)
+                .baseUrl(NetConstants.BASE_URL)
                 .build()
                 .create(ApiService::class.java)
     }

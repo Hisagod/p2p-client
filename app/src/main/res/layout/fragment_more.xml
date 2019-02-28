@@ -55,117 +55,79 @@
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_line" />
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/MoreTextStyle"
-                        android:layout_width="wrap_content"
-                        android:drawableLeft="@drawable/icon_more_secret"
-                        android:text="手势密码" />
-
-                    <ToggleButton
-                        android:id="@+id/toggle_more"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/toggle_selector"
-                        android:textOff=""
-                        android:textOn="" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/divider_line" />
 
                 <TextView
-                    android:id="@+id/tv_more_reset"
-                    style="@style/MoreTextStyle"
+                    android:id="@+id/tv_customer"
                     android:layout_width="match_parent"
-                    android:drawableLeft="@drawable/icon_more_reset"
-                    android:text="重置手势密码" />
-
+                    android:layout_height="50dp"
+                    android:background="?selectableItemBackground"
+                    android:drawableLeft="@drawable/icon_more_contact"
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="联系客服"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
+                    android:layout_height="0.1dp"
                     android:background="@color/divider_line" />
-
-                <RelativeLayout
-                    android:id="@+id/rl_more_contact"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        style="@style/MoreTextStyle"
-                        android:layout_width="wrap_content"
-                        android:drawableLeft="@drawable/icon_more_contact"
-                        android:text="联系客服" />
-
-                    <TextView
-                        android:id="@+id/tv_more_phone"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentRight="true"
-                        android:layout_centerVertical="true"
-                        android:layout_marginRight="10dp"
-                        android:text="010-56253825"
-                        android:textColor="@android:color/holo_red_dark"
-                        android:textSize="20sp" />
-
-                </RelativeLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_line"></View>
 
                 <TextView
                     android:id="@+id/tv_more_fankui"
-                    style="@style/MoreTextStyle"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?selectableItemBackground"
                     android:drawableLeft="@drawable/icon_more_sms"
-                    android:text="用户反馈" />
-
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="用户反馈"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_line"></View>
+                    android:layout_height="0.1dp"
+                    android:background="@color/divider_line" />
 
                 <TextView
                     android:id="@+id/tv_more_share"
-                    style="@style/MoreTextStyle"
                     android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="?selectableItemBackground"
                     android:drawableLeft="@drawable/icon_more_share"
-                    android:text="分享给好友" />
-
+                    android:drawablePadding="20dp"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:paddingRight="20dp"
+                    android:text="分享给好友"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
 
                 <View
                     android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="@color/divider_line"></View>
+                    android:layout_height="0.1dp"
+                    android:background="@color/divider_line" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="50dp"
+                    android:background="?selectableItemBackground"
                     android:drawableLeft="@drawable/icon_more_about"
                     android:drawablePadding="20dp"
                     android:gravity="center_vertical"
                     android:onClick="@{()->contr.about()}"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
-                    android:text="关于硅谷理财"
+                    android:text="关于山竹理财"
                     android:textColor="@android:color/black"
-                    android:textSize="14sp" />
+                    android:textSize="16sp" />
             </LinearLayout>
         </android.support.v4.widget.NestedScrollView>
     </LinearLayout>

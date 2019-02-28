@@ -1,11 +1,7 @@
 package com.aib.view.activity;
 
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.databinding.ActivityLoginBinding;
 import com.blankj.utilcode.util.ActivityUtils;
@@ -36,6 +32,6 @@ public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
      * 注册
      */
     public void register() {
-        ActivityUtils.startActivity(UserRegistActivity.class);
+        ActivityUtils.startActivity(RegistActivity.class);
     }
 }

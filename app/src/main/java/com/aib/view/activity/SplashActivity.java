@@ -25,8 +25,10 @@ import com.atguigu.p2pinvest0828.bean.UpdateInfo;
 import com.atguigu.p2pinvest0828.common.AppNetConfig;
 import com.atguigu.p2pinvest0828.databinding.ActivitySplashBinding;
 import com.atguigu.p2pinvest0828.util.UIUtils;
+import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.ActivityUtils;
 import com.blankj.utilcode.util.BarUtils;
+import com.blankj.utilcode.util.PermissionUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 
@@ -38,6 +40,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -264,17 +267,28 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
     protected void initData(@Nullable Bundle savedInstanceState) {
         BarUtils.setStatusBarAlpha(this, 0);
 
-        new CountDownTimer(3000, 1000) {
+        PermissionUtils.permission(PermissionConstants.PHONE).callback(new PermissionUtils.FullCallback() {
             @Override
-            public void onTick(long millisUntilFinished) {
+            public void onGranted(List<String> permissionsGranted) {
+                new CountDownTimer(3000, 1000) {
+                    @Override
+                    public void onTick(long millisUntilFinished) {
 
+                    }
+
+                    @Override
+                    public void onFinish() {
+                        ActivityUtils.startActivity(MainActivity.class);
+                    }
+                }.start();
             }
 
             @Override
-            public void onFinish() {
-                ActivityUtils.startActivity(MainActivity.class);
+            public void onDenied(List<String> permissionsDeniedForever, List<String> permissionsDenied) {
+                finish();
             }
-        }.start();
+        }).request();
+
 
         //联网更新应用
 //by hlp        updateApkFile();

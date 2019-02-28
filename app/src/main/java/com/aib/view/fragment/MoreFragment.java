@@ -1,6 +1,7 @@
 package com.aib.view.fragment;
 
 import android.Manifest;
+import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -17,15 +18,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 
+import com.aib.view.activity.RegistActivity;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.activity.GestureEditActivity;
 import com.aib.view.activity.AboutActivity;
-import com.aib.view.activity.UserRegistActivity;
 import com.atguigu.p2pinvest0828.common.AppNetConfig;
 import com.atguigu.p2pinvest0828.common.BaseActivity;
 import com.atguigu.p2pinvest0828.databinding.FragmentMoreBinding;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 import com.blankj.utilcode.util.ActivityUtils;
+import com.blankj.utilcode.util.PhoneUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
@@ -34,11 +36,9 @@ import org.jetbrains.annotations.Nullable;
 
 import cn.sharesdk.onekeyshare.OnekeyShare;
 
-
 public class MoreFragment extends BaseFragment<FragmentMoreBinding> {
 
     private SharedPreferences sp;
-
 
     private void share() {
         binding.tvMoreShare.setOnClickListener(new View.OnClickListener() {
@@ -133,24 +133,18 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding> {
     }
 
     private void contactService() {
-        binding.rlMoreContact.setOnClickListener(new View.OnClickListener() {
+        binding.tvCustomer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new AlertDialog.Builder(MoreFragment.this.getActivity())
                         .setTitle("联系客服")
-                        .setMessage("是否现在联系客服：010-56253825")
+                        .setMessage("联系客服：1536006XXXX")
                         .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                            @SuppressLint("MissingPermission")
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-                                //获取手机号码
-                                String phone = binding.tvMorePhone.getText().toString().trim();
-                                //使用隐式意图，启动系统拨号应用界面
-                                Intent intent = new Intent(Intent.ACTION_CALL);
-                                intent.setData(Uri.parse("tel:" + phone));
-                                if (ActivityCompat.checkSelfPermission(MoreFragment.this.getActivity(), Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
-                                    return;
-                                }
-                                MoreFragment.this.getActivity().startActivity(intent);
+                                String phone = binding.tvCustomer.getText().toString().trim();
+                                PhoneUtils.call(phone);
                             }
                         })
                         .setNegativeButton("取消", null)
@@ -159,76 +153,12 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding> {
         });
     }
 
-    private void resetGesture() {
-        binding.tvMoreReset.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                boolean checked = binding.toggleMore.isChecked();
-                if (checked) {
-                    ((BaseActivity) MoreFragment.this.getActivity()).goToActivity(GestureEditActivity.class, null);
-                } else {
-                    UIUtils.toast("手势密码操作已关闭，请开启后再设置", false);
-                }
-            }
-        });
-    }
-
-    private void setGesturePassword() {
-        binding.toggleMore.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
-            @Override
-            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
-                if (isChecked) {
-//                    UIUtils.toast("开启了手势密码", false);
-//                    sp.edit().putBoolean("isOpen", true).commit();
-                    String inputCode = sp.getString("inputCode", "");
-                    if (TextUtils.isEmpty(inputCode)) {//之前没有设置过
-                        new AlertDialog.Builder(MoreFragment.this.getActivity())
-                                .setTitle("设置手势密码")
-                                .setMessage("是否现在设置手势密码")
-                                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        UIUtils.toast("现在设置手势密码", false);
-                                        sp.edit().putBoolean("isOpen", true).commit();
-//                                            toggleMore.setChecked(true);
-                                        //开启新的activity:
-                                        ((BaseActivity) MoreFragment.this.getActivity()).goToActivity(GestureEditActivity.class, null);
-                                    }
-                                })
-                                .setNegativeButton("取消", new DialogInterface.OnClickListener() {
-                                    @Override
-                                    public void onClick(DialogInterface dialog, int which) {
-                                        UIUtils.toast("取消了现在设置手势密码", false);
-                                        sp.edit().putBoolean("isOpen", false).commit();
-                                        binding.toggleMore.setChecked(false);
-
-                                    }
-                                })
-                                .show();
-                    } else {
-                        UIUtils.toast("开启手势密码", false);
-                        sp.edit().putBoolean("isOpen", true).commit();
-                    }
-                } else {
-                    UIUtils.toast("关闭了手势密码", false);
-                    sp.edit().putBoolean("isOpen", false).commit();
-
-                }
-            }
-        });
-    }
 
     /**
      * 注册
      */
     public void register() {
-        ActivityUtils.startActivity(UserRegistActivity.class);
-    }
-
-    private void getGestureStatus() {
-        boolean isOpen = sp.getBoolean("isOpen", false);
-        binding.toggleMore.setChecked(isOpen);
-
+        ActivityUtils.startActivity(RegistActivity.class);
     }
 
     @Override
@@ -243,13 +173,6 @@ public class MoreFragment extends BaseFragment<FragmentMoreBinding> {
         //初始化SharedPreferences
         sp = this.getActivity().getSharedPreferences("secret_protect", Context.MODE_PRIVATE);
         //获取当前设置手势密码的ToggleButton的状态
-        getGestureStatus();
-
-        //设置手势密码
-        setGesturePassword();
-
-        //重置手势密码
-        resetGesture();
 
         //联系客服
         contactService();
