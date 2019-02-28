@@ -1,9 +1,6 @@
 package com.aib.di
 
-import com.aib.view.activity.AboutActivity
-import com.aib.view.activity.MainActivity
-import com.aib.view.activity.SplashActivity
-import com.aib.view.activity.RegistActivity
+import com.aib.view.activity.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -34,4 +31,10 @@ interface ActivityModule {
      */
     @ContributesAndroidInjector
     fun AboutActivity(): AboutActivity
+
+    /**
+     * 设置
+     */
+    @ContributesAndroidInjector
+    fun SettingsActivity(): SettingsActivity
 }

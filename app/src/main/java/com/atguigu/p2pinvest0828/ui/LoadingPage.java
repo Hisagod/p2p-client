@@ -121,40 +121,40 @@ public abstract class LoadingPage extends FrameLayout {
             return;
         }
 
-        UIUtils.getHandler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                AsyncHttpClient client = new AsyncHttpClient();
-                client.get(url(), params(), new AsyncHttpResponseHandler() {
-                    @Override
-                    public void onSuccess(String content) {
-                        if (TextUtils.isEmpty(content)) {// "" or null
-//                    state_current = STATE_EMPTY;
-                            resultState = ResultState.EMPTY;
-                            resultState.setContent("");
-                        } else {
-//                    state_current = STATE_SUCCESS;
-                            resultState = ResultState.SUCCESS;
-                            resultState.setContent(content);
-                        }
-
-//                showSafePage();
-                        loadImage();
-                    }
-
-                    @Override
-                    public void onFailure(Throwable error, String content) {
-//                state_current = STATE_ERROR;
-                        resultState = ResultState.ERROR;
-                        resultState.setContent("");
-
-//                showSafePage();
-                        loadImage();
-
-                    }
-                });
-            }
-        }, 2000);
+//        UIUtils.getHandler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//                AsyncHttpClient client = new AsyncHttpClient();
+//                client.get(url(), params(), new AsyncHttpResponseHandler() {
+//                    @Override
+//                    public void onSuccess(String content) {
+//                        if (TextUtils.isEmpty(content)) {// "" or null
+////                    state_current = STATE_EMPTY;
+//                            resultState = ResultState.EMPTY;
+//                            resultState.setContent("");
+//                        } else {
+////                    state_current = STATE_SUCCESS;
+//                            resultState = ResultState.SUCCESS;
+//                            resultState.setContent(content);
+//                        }
+//
+////                showSafePage();
+//                        loadImage();
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Throwable error, String content) {
+////                state_current = STATE_ERROR;
+//                        resultState = ResultState.ERROR;
+//                        resultState.setContent("");
+//
+////                showSafePage();
+//                        loadImage();
+//
+//                    }
+//                });
+//            }
+//        }, 2000);
 
 
     }

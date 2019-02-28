@@ -7,7 +7,7 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <android.support.v7.widget.Toolbar style="@style/toolbar_style">
+        <androidx.appcompat.widget.Toolbar style="@style/toolbar_style">
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -21,9 +21,9 @@
                     android:textColor="@android:color/white"
                     android:textSize="18sp" />
             </RelativeLayout>
-        </android.support.v7.widget.Toolbar>
+        </androidx.appcompat.widget.Toolbar>
 
-        <android.support.v4.widget.NestedScrollView
+        <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:fillViewport="true">
@@ -152,6 +152,6 @@
                     android:text="风险保障金由硅谷银行监管"
                     android:textColor="@color/home_back_unselected" />
             </LinearLayout>
-        </android.support.v4.widget.NestedScrollView>
+        </androidx.core.widget.NestedScrollView>
     </LinearLayout>
 </layout>

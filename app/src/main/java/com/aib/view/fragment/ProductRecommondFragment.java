@@ -1,6 +1,5 @@
 package com.aib.view.fragment;
 
-import android.databinding.ViewDataBinding;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
@@ -10,7 +9,6 @@ import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.databinding.FragmentProductrecommondBinding;
 import com.atguigu.p2pinvest0828.ui.randomLayout.StellarMap;
 import com.atguigu.p2pinvest0828.util.UIUtils;
-import com.loopj.android.http.RequestParams;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -24,7 +22,7 @@ import java.util.Random;
  * --->addView(...):一个一个的添加
  * --->设置adapter的方式，批量装配数据。
  */
-public class ProductRecommondFragment extends BaseFragment<FragmentProductrecommondBinding> {
+public class ProductRecommondFragment extends BaseOldFragment<FragmentProductrecommondBinding> {
     //提供装配的数据
     private String[] datas = new String[]{"新手福利计划", "财神道90天计划", "硅谷钱包计划", "30天理财计划(加息2%)", "180天理财计划(加息5%)", "月月升理财计划(加息10%)",
             "中情局投资商业经营", "大学老师购买车辆", "屌丝下海经商计划", "美人鱼影视拍摄投资", "Android培训老师自己周转", "养猪场扩大经营",

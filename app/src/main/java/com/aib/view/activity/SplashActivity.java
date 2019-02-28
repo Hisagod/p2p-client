@@ -45,7 +45,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 
-public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
+public class SplashActivity extends BaseOldActivity<ActivitySplashBinding> {
     @Inject
     SplashViewModel vm;
     private static final int TO_MAIN = 1;
@@ -265,7 +265,7 @@ public class SplashActivity extends BaseActivity<ActivitySplashBinding> {
 
     @Override
     protected void initData(@Nullable Bundle savedInstanceState) {
-        BarUtils.setStatusBarAlpha(this, 0);
+        BarUtils.setStatusBarColor(this, 0);
 
         PermissionUtils.permission(PermissionConstants.PHONE).callback(new PermissionUtils.FullCallback() {
             @Override

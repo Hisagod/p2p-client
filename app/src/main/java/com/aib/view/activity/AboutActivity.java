@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 关于app
  */
-public class AboutActivity extends BaseActivity<ActivityAboutBinding> {
+public class AboutActivity extends BaseOldActivity<ActivityAboutBinding> {
     @Override
     protected int getResId() {
         return R.layout.activity_about;

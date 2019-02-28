@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.atguigu.p2pinvest0828">
-
     <!-- 配置所需权限 -->
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
     <uses-permission android:name="android.permission.INTERNET" />
@@ -21,12 +20,9 @@
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.RESTART_PACKAGES" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-
-    <!-- 使用shareSdk相关的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 使用shareSdk相关的权限 -->
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" />
-    <!-- 蓝牙分享所需的权限 -->
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS" /> <!-- 蓝牙分享所需的权限 -->
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
 
@@ -38,6 +34,7 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name="com.aib.view.activity.SettingsActivity"></activity>
         <activity android:name="com.aib.view.activity.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -87,23 +84,19 @@
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-        </activity>
-
-        <!-- 微信分享回调 -->
+        </activity> <!-- 微信分享回调 -->
         <activity
             android:name=".wxapi.WXEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-
-        <!-- 支付宝分享回调 -->
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" /> <!-- 支付宝分享回调 -->
         <activity
             android:name=".apshare.ShareEntryActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="true"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-        <activity android:name="com.aib.view.activity.AboutActivity"></activity>
+        <activity android:name="com.aib.view.activity.AboutActivity" />
     </application>
 
 </manifest>

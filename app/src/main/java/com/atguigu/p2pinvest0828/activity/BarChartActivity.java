@@ -1,15 +1,6 @@
 package com.atguigu.p2pinvest0828.activity;
 
-import android.graphics.Typeface;
-import android.support.v7.app.AppCompatActivity;
-import android.view.View;
-import android.widget.ImageView;
-import android.widget.TextView;
-
-import com.atguigu.p2pinvest0828.R;
-import com.atguigu.p2pinvest0828.common.BaseActivity;
-
-import java.util.ArrayList;
+import androidx.appcompat.app.AppCompatActivity;
 
 // by HLP
 public class BarChartActivity extends AppCompatActivity {

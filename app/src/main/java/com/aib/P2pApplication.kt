@@ -5,21 +5,16 @@ import android.app.Application
 import android.content.Context
 import android.os.Bundle
 import android.os.Handler
-import android.support.v4.app.Fragment
-import android.support.v4.app.FragmentManager
-import android.support.v7.app.AppCompatActivity
 
 import cn.sharesdk.framework.ShareSDK
 import com.aib.di.DaggerAppComponent
-import com.aib.di.Injectable
-import com.aib.view.activity.BaseActivity
-import com.aib.view.fragment.BaseFragment
+import com.aib.view.activity.BaseOldActivity
+import com.aib.view.fragment.BaseOldFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
 import dagger.android.support.AndroidSupportInjection
-import dagger.android.support.HasSupportFragmentInjector
 import javax.inject.Inject
 
 class P2pApplication : Application(), HasActivityInjector {
@@ -63,13 +58,13 @@ class P2pApplication : Application(), HasActivityInjector {
             }
 
             override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-                if (activity is BaseActivity<*>) {
+                if (activity is BaseOldActivity<*>) {
                     AndroidInjection.inject(activity)
 
-                    activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(fm: FragmentManager, f: Fragment, savedInstanceState: Bundle?) {
+                    activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
+                        override fun onFragmentCreated(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
                             super.onFragmentCreated(fm, f, savedInstanceState)
-                            if (f is BaseFragment<*>) {
+                            if (f is BaseOldFragment<*>) {
                                 AndroidSupportInjection.inject(f)
                             }
                         }

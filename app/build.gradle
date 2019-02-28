@@ -1,11 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
+apply plugin: 'kotlin-android-extensions'
 
 android {
     compileSdkVersion 28
-    buildToolsVersion '28.0.3'
-
     defaultConfig {
         applicationId "com.atguigu.p2pinvest0828"
         minSdkVersion 21
@@ -25,13 +24,9 @@ android {
     }
 }
 
-kapt {
-    generateStubs = true
-}
-
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation files('libs/android-async-http-master.jar')
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //    compile project(':ViewPagerIndicator')
@@ -59,9 +54,9 @@ dependencies {
     //kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //工具类
-    implementation 'com.blankj:utilcode:1.22.3'
+    implementation 'com.blankj:utilcode:1.23.4'
     //
-    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.google.android.material:material:1.0.0-beta01'
     //banner
     implementation 'com.youth.banner:banner:1.4.10'
     //retrofit
@@ -71,12 +66,13 @@ dependencies {
     //net-log
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //rx
-    implementation 'io.reactivex.rxjava2:rxandroid:2.1.0'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
     //dagger
-    implementation 'com.google.dagger:dagger:2.19'
-    kapt 'com.google.dagger:dagger-compiler:2.19'
-    implementation 'com.google.dagger:dagger-android:2.19'
-    implementation 'com.google.dagger:dagger-android-support:2.19'
-    kapt 'com.google.dagger:dagger-android-processor:2.19'
+    implementation 'com.google.dagger:dagger:2.20'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    kapt 'com.google.dagger:dagger-compiler:2.20'
+    implementation 'com.google.dagger:dagger-android:2.20'
+    implementation 'com.google.dagger:dagger-android-support:2.20'
+    kapt 'com.google.dagger:dagger-android-processor:2.20'
 }

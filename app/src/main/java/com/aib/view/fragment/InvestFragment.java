@@ -1,9 +1,9 @@
 package com.aib.view.fragment;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentPagerAdapter;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentPagerAdapter;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.databinding.FragmentInvestBinding;
 import com.atguigu.p2pinvest0828.util.UIUtils;
@@ -14,7 +14,7 @@ import java.util.List;
 /**
  * 投资
  */
-public class InvestFragment extends BaseFragment<FragmentInvestBinding> {
+public class InvestFragment extends BaseOldFragment<FragmentInvestBinding> {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override

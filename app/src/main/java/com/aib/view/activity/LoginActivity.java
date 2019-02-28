@@ -10,7 +10,7 @@ import org.jetbrains.annotations.Nullable;
 /**
  * 登录
  */
-public class LoginActivity extends BaseActivity<ActivityLoginBinding> {
+public class LoginActivity extends BaseOldActivity<ActivityLoginBinding> {
     @Override
     protected int getResId() {
         return R.layout.activity_login;

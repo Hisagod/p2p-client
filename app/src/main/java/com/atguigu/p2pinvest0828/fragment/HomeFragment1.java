@@ -1,6 +1,6 @@
 package com.atguigu.p2pinvest0828.fragment;
 
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 
 /**
  * Created by shkstart on 2016/11/30 0030.

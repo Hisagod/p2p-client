@@ -1,6 +1,6 @@
 package com.aib.viewmodel
 
-import android.arch.lifecycle.MutableLiveData
+import androidx.lifecycle.MutableLiveData
 import com.aib.entity.BaseEntity
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers

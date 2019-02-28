@@ -1,6 +1,6 @@
 package com.aib.view.activity
 
-import android.arch.lifecycle.Observer
+import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.text.TextUtils
 import com.aib.viewmodel.RegisterViewModel
@@ -13,7 +13,7 @@ import com.blankj.utilcode.util.ToastUtils
 import javax.inject.Inject
 
 
-class RegistActivity : BaseActivity<ActivityUserRegistBinding>() {
+class RegistActivity : BaseOldActivity<ActivityUserRegistBinding>() {
     @Inject
     lateinit var vm: RegisterViewModel
 

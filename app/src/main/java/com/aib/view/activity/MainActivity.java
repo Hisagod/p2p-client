@@ -1,18 +1,21 @@
 package com.aib.view.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+
+import androidx.annotation.NonNull;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.view.MenuItem;
 
-import com.aib.view.fragment.AssetsFragment;
+import com.aib.view.fragment.CenterFragment;
 import com.aib.view.fragment.InvestFragment;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.databinding.ActivityMainBinding;
 import com.aib.view.fragment.HomeFragment;
-import com.aib.view.fragment.MoreFragment;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -20,7 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MainActivity extends BaseActivity<ActivityMainBinding> {
+public class MainActivity extends BaseOldActivity<ActivityMainBinding> {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     @Override
@@ -32,8 +35,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
     protected void initData(@Nullable Bundle savedInstanceState) {
         fragmentList.add(new HomeFragment());
         fragmentList.add(new InvestFragment());
-        fragmentList.add(new AssetsFragment());
-        fragmentList.add(new MoreFragment());
+        fragmentList.add(new CenterFragment());
 
         binding.bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
@@ -47,9 +49,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding> {
                         return true;
                     case R.id.btn_assets:
                         switchFragment(2);
-                        return true;
-                    case R.id.btn_more:
-                        switchFragment(3);
                         return true;
                 }
                 return false;
