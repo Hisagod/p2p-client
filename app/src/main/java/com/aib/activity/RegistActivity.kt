@@ -1,4 +1,4 @@
-package com.aib.view.activity
+package com.aib.activity
 
 import androidx.lifecycle.Observer
 import android.os.Bundle

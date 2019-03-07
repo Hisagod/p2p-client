@@ -1,4 +1,4 @@
-package com.aib.view.fragment;
+package com.aib.fragment;
 
 import android.widget.ListView;
 import android.widget.TextView;

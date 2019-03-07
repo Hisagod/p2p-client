@@ -1,7 +1,6 @@
-package com.aib.view.fragment
+package com.aib.fragment
 
 import android.os.Bundle
-import android.provider.Settings
 import android.text.TextUtils
 import android.view.View
 
@@ -10,8 +9,8 @@ import com.atguigu.p2pinvest0828.R
 import com.atguigu.p2pinvest0828.activity.BarChartActivity
 import com.atguigu.p2pinvest0828.activity.ChongZhiActivity
 import com.atguigu.p2pinvest0828.activity.LineChartActivity
-import com.aib.view.activity.LoginActivity
-import com.aib.view.activity.SettingsActivity
+import com.aib.activity.LoginActivity
+import com.aib.activity.SettingsActivity
 import com.atguigu.p2pinvest0828.activity.PieChartActivity
 import com.atguigu.p2pinvest0828.activity.TiXianActivity
 import com.atguigu.p2pinvest0828.activity.UserInfoActivity
@@ -56,6 +55,10 @@ class CenterFragment : BaseFragment() {
 
     override fun initData(savedInstanceState: Bundle?) {
         openSettings()
+
+        iv_avatar.setOnClickListener {
+            ActivityUtils.startActivity(LoginActivity::class.java)
+        }
     }
 
     private fun openSettings() {

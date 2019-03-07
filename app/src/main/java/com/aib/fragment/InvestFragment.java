@@ -1,4 +1,4 @@
-package com.aib.view.fragment;
+package com.aib.fragment;
 
 import android.os.Bundle;
 import androidx.fragment.app.Fragment;

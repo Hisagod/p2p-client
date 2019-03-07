@@ -5,7 +5,7 @@
 
         <variable
             name="contr"
-            type="com.aib.view.activity.LoginActivity" />
+            type="com.aib.activity.LoginActivity" />
     </data>
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"

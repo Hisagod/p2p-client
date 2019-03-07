@@ -22,7 +22,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.aib.view.activity.MainActivity;
+import com.aib.activity.MainActivity;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.common.BaseActivity;
 import com.atguigu.p2pinvest0828.util.BitmapUtils;

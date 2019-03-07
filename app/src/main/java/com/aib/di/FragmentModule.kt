@@ -1,9 +1,9 @@
 package com.aib.di
 
-import com.aib.view.fragment.CenterFragment
-import com.aib.view.fragment.HomeFragment
-import com.aib.view.fragment.InvestFragment
-import com.aib.view.fragment.ProductRecommondFragment
+import com.aib.fragment.CenterFragment
+import com.aib.fragment.HomeFragment
+import com.aib.fragment.InvestFragment
+import com.aib.fragment.ProductRecommondFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

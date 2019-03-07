@@ -1,4 +1,4 @@
-package com.aib.view.fragment;
+package com.aib.fragment;
 
 import androidx.databinding.ViewDataBinding;
 import android.os.Bundle;

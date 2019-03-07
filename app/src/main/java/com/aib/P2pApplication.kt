@@ -8,8 +8,8 @@ import android.os.Handler
 
 import cn.sharesdk.framework.ShareSDK
 import com.aib.di.DaggerAppComponent
-import com.aib.view.activity.BaseOldActivity
-import com.aib.view.fragment.BaseOldFragment
+import com.aib.activity.BaseOldActivity
+import com.aib.fragment.BaseOldFragment
 import dagger.android.AndroidInjection
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector

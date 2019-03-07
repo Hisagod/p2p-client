@@ -1,6 +1,6 @@
 package com.aib.di
 
-import com.aib.view.activity.*
+import com.aib.activity.*
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
@@ -37,4 +37,10 @@ interface ActivityModule {
      */
     @ContributesAndroidInjector
     fun SettingsActivity(): SettingsActivity
+
+    /**
+     * 登录
+     */
+    @ContributesAndroidInjector
+    fun LoginActivity(): LoginActivity
 }

@@ -1,4 +1,4 @@
-package com.aib.view.activity;
+package com.aib.activity;
 
 import android.os.Bundle;
 
@@ -11,11 +11,11 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.view.MenuItem;
 
-import com.aib.view.fragment.CenterFragment;
-import com.aib.view.fragment.InvestFragment;
+import com.aib.fragment.CenterFragment;
+import com.aib.fragment.InvestFragment;
 import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.databinding.ActivityMainBinding;
-import com.aib.view.fragment.HomeFragment;
+import com.aib.fragment.HomeFragment;
 
 import org.jetbrains.annotations.Nullable;
 

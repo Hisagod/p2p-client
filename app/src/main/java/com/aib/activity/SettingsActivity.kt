@@ -1,4 +1,4 @@
-package com.aib.view.activity
+package com.aib.activity
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface

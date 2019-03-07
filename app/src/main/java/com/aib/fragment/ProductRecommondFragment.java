@@ -1,4 +1,4 @@
-package com.aib.view.fragment;
+package com.aib.fragment;
 
 import android.graphics.Color;
 import android.os.Bundle;
