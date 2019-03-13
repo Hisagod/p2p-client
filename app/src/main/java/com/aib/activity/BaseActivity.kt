@@ -14,10 +14,4 @@ open class BaseActivity : AppCompatActivity(), HasSupportFragmentInjector {
     override fun supportFragmentInjector(): AndroidInjector<Fragment> {
         return fragmentInjector
     }
-
-    override fun setContentView(layoutResID: Int) {
-        super.setContentView(layoutResID)
-
-
-    }
 }

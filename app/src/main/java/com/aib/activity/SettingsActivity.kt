@@ -19,9 +19,9 @@ import com.loopj.android.http.AsyncHttpClient
 import com.loopj.android.http.AsyncHttpResponseHandler
 import com.loopj.android.http.RequestParams
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.android.synthetic.main.view_toolbar_content.*
 
-class SettingsActivity : BaseActivity() {
-
+class SettingsActivity : BaseToolbarActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_settings)
@@ -34,6 +34,10 @@ class SettingsActivity : BaseActivity() {
 
         //分享
         share()
+    }
+
+    override fun setTitle() {
+        tv_title.text = "设置中心"
     }
 
     private var sp: SharedPreferences? = null
