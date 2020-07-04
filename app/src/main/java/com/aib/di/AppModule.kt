@@ -1,6 +1,6 @@
 package com.aib.di
 
-import com.aib.net.ApiService
+import com.aib.lib.base.net.ApiService
 import com.aib.lib.base.net.NetConstants
 import dagger.Module
 import dagger.Provides

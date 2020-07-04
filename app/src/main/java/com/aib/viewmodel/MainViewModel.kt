@@ -3,8 +3,8 @@ package com.aib.viewmodel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aib.bean.BannerBean
-import com.aib.net.convert
+import com.aib.lib.base.bean.BannerBean
+import com.aib.lib.base.net.convert
 import kotlinx.coroutines.launch
 
 class MainViewModel : BaseViewModel() {

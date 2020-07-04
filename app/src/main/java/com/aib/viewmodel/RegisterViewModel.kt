@@ -1,7 +1,7 @@
 package com.aib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.aib.bean.BaseBean
+import com.aib.lib.base.bean.BaseBean
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable

@@ -1,4 +1,4 @@
-package com.aib.bean
+package com.aib.lib.base.bean
 
 import java.io.Serializable
 
