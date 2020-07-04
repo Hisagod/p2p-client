@@ -15,14 +15,6 @@ interface FragmentModule {
     @ContributesAndroidInjector
     fun HomeFragment(): HomeFragment
 
-    /**
-     * 投资
-     */
-    @ContributesAndroidInjector
-    fun InvestFragment(): InvestFragment
-
-    @ContributesAndroidInjector
-    fun ProductRecommondFragment(): ProductRecommondFragment
 
     /**
      * 个人中心

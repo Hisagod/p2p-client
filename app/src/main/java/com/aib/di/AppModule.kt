@@ -1,8 +1,7 @@
 package com.aib.di
 
 import com.aib.net.ApiService
-import com.aib.net.NetConstants
-import com.aib.utils.Constants
+import com.aib.lib.base.net.NetConstants
 import dagger.Module
 import dagger.Provides
 import retrofit2.Retrofit

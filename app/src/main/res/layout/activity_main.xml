@@ -16,6 +16,7 @@
             android:id="@+id/bnv"
             android:layout_width="match_parent"
             android:layout_height="45dp"
+            android:background="@android:color/white"
             app:menu="@menu/meny_bnv" />
     </LinearLayout>
 </layout>

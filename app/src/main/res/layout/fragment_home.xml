@@ -34,15 +34,11 @@
                 android:gravity="center_horizontal"
                 android:orientation="vertical">
 
-                <FrameLayout
+                <com.youth.banner.Banner
+                    android:id="@+id/banner"
                     android:layout_width="match_parent"
-                    android:layout_height="150dp">
-
-                    <com.youth.banner.Banner
-                        android:id="@+id/banner"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </FrameLayout>
+                    android:layout_height="150dp"
+                    atguigu:delay_time="5000" />
 
                 <TextView
                     android:id="@+id/tv_home_product"

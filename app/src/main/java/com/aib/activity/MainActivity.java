@@ -4,6 +4,8 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 
+import com.aib.p2p.R;
+import com.aib.p2p.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.fragment.app.Fragment;
@@ -13,8 +15,6 @@ import android.view.MenuItem;
 
 import com.aib.fragment.CenterFragment;
 import com.aib.fragment.InvestFragment;
-import com.atguigu.p2pinvest0828.R;
-import com.atguigu.p2pinvest0828.databinding.ActivityMainBinding;
 import com.aib.fragment.HomeFragment;
 
 import org.jetbrains.annotations.Nullable;

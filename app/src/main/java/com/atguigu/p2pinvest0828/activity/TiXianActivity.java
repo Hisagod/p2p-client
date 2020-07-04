@@ -10,7 +10,7 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-import com.atguigu.p2pinvest0828.R;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.common.BaseActivity;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 

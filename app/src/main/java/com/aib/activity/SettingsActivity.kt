@@ -10,7 +10,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
 import cn.sharesdk.onekeyshare.OnekeyShare
-import com.atguigu.p2pinvest0828.R
+import com.aib.p2p.R
 import com.atguigu.p2pinvest0828.common.AppNetConfig
 import com.atguigu.p2pinvest0828.util.UIUtils
 import com.blankj.utilcode.util.ActivityUtils

@@ -2,8 +2,8 @@ package com.aib.activity;
 
 import android.os.Bundle;
 
-import com.atguigu.p2pinvest0828.R;
-import com.atguigu.p2pinvest0828.databinding.ActivityLoginBinding;
+import com.aib.p2p.R;
+import com.aib.p2p.databinding.ActivityLoginBinding;
 import com.blankj.utilcode.util.ActivityUtils;
 import org.jetbrains.annotations.Nullable;
 

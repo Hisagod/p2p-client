@@ -5,8 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import com.atguigu.p2pinvest0828.R;
-import com.atguigu.p2pinvest0828.databinding.FragmentProductrecommondBinding;
+import com.aib.lib.base.fragment.BaseFragment;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.ui.randomLayout.StellarMap;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 
@@ -22,7 +22,7 @@ import java.util.Random;
  * --->addView(...):一个一个的添加
  * --->设置adapter的方式，批量装配数据。
  */
-public class ProductRecommondFragment extends BaseOldFragment<FragmentProductrecommondBinding> {
+public class ProductRecommondFragment extends BaseFragment {
     //提供装配的数据
     private String[] datas = new String[]{"新手福利计划", "财神道90天计划", "硅谷钱包计划", "30天理财计划(加息2%)", "180天理财计划(加息5%)", "月月升理财计划(加息10%)",
             "中情局投资商业经营", "大学老师购买车辆", "屌丝下海经商计划", "美人鱼影视拍摄投资", "Android培训老师自己周转", "养猪场扩大经营",
@@ -36,12 +36,15 @@ public class ProductRecommondFragment extends BaseOldFragment<FragmentProductrec
     private Random random = new Random();
 
     @Override
-    public int getResId() {
+    public int getLayoutId() {
         return R.layout.fragment_productrecommond;
     }
 
     @Override
-    public void initData(@Nullable Bundle savedInstanceState) {
+    public void initData() {
+
+        StellarMap stellarMap = getView().findViewById(R.id.stellar_map);
+
         //初始化子数组的数据
         for (int i = 0; i < datas.length; i++) {
             if (i < datas.length / 2) {
@@ -53,20 +56,20 @@ public class ProductRecommondFragment extends BaseOldFragment<FragmentProductrec
 
 
         StellarAdapter adapter = new StellarAdapter();
-        binding.stellarMap.setAdapter(adapter);
+        stellarMap.setAdapter(adapter);
 
         //设置stellarMap的内边距
         int leftPadding = UIUtils.dp2px(10);
         int topPadding = UIUtils.dp2px(10);
         int rightPadding = UIUtils.dp2px(10);
         int bottomPadding = UIUtils.dp2px(10);
-        binding.stellarMap.setInnerPadding(leftPadding, topPadding, rightPadding, bottomPadding);
+        stellarMap.setInnerPadding(leftPadding, topPadding, rightPadding, bottomPadding);
 
         //必须调用如下的两个方法，否则stellarMap不能显示数据
         //设置显示的数据在x轴、y轴方向上的稀疏度
-        binding.stellarMap.setRegularity(5, 7);
+        stellarMap.setRegularity(5, 7);
         //设置初始化显示的组别，以及是否需要使用动画
-        binding.stellarMap.setGroup(0, true);
+        stellarMap.setGroup(0, true);
     }
 
 

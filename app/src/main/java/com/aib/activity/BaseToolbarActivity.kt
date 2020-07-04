@@ -2,7 +2,8 @@ package com.aib.activity
 
 import android.view.LayoutInflater
 import android.widget.FrameLayout
-import com.atguigu.p2pinvest0828.R
+import com.aib.p2p.R
+
 import kotlinx.android.synthetic.main.view_toolbar_content.*
 
 /**

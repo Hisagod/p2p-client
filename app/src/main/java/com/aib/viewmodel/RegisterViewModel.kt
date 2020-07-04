@@ -1,7 +1,7 @@
 package com.aib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
-import com.aib.entity.BaseEntity
+import com.aib.bean.BaseBean
 import io.reactivex.Observer
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.Disposable
@@ -9,13 +9,13 @@ import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RegisterViewModel @Inject constructor() : BaseViewModel() {
-    private val data = MutableLiveData<BaseEntity<String>>()
-    fun userRegister(phone: String, pwd: String): MutableLiveData<BaseEntity<String>> {
+    private val data = MutableLiveData<BaseBean<String>>()
+    fun userRegister(phone: String, pwd: String): MutableLiveData<BaseBean<String>> {
         apiService
                 .REGISTER(phone, pwd)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(object : Observer<BaseEntity<String>> {
+                .subscribe(object : Observer<BaseBean<String>> {
                     override fun onComplete() {
 
                     }
@@ -24,7 +24,7 @@ class RegisterViewModel @Inject constructor() : BaseViewModel() {
 
                     }
 
-                    override fun onNext(t: BaseEntity<String>) {
+                    override fun onNext(t: BaseBean<String>) {
                         data.value = t
                     }
 

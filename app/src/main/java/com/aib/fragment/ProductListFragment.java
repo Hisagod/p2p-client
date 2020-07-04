@@ -3,14 +3,12 @@ package com.aib.fragment;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import com.aib.lib.base.fragment.BaseFragment;
+import com.aib.p2p.R;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.adapter.ProductAdapter3;
 import com.atguigu.p2pinvest0828.bean.Product;
-import com.atguigu.p2pinvest0828.common.AppNetConfig;
-import com.atguigu.p2pinvest0828.common.BaseFragment;
-import com.loopj.android.http.RequestParams;
 
 import java.util.List;
 
@@ -24,25 +22,27 @@ public class ProductListFragment extends BaseFragment {
     ListView lvProductList;
     private List<Product> productList;
 
+
+//    @Override
+//    protected String getUrl() {
+//        return AppNetConfig.PRODUCT;
+//    }
+
+
     @Override
-    protected RequestParams getParams() {
-        return null;
+    public int getLayoutId() {
+        return R.layout.fragment_productlist;
     }
 
     @Override
-    protected String getUrl() {
-        return AppNetConfig.PRODUCT;
-    }
-
-    @Override
-    protected void initData(String content) {
+    public void initData() {
         //方式一：使得当前的textView获取焦点
 //        tvProductTitle.setFocusable(true);
 //        tvProductTitle.setFocusableInTouchMode(true);
 //        tvProductTitle.requestFocus();
         //方式二：提供TextView的子类，重写isFocus(),返回true即可。
 
-        JSONObject jsonObject = JSON.parseObject(content);
+        JSONObject jsonObject = JSON.parseObject("");
         boolean success = jsonObject.getBoolean("success");
         if(success){
             String data = jsonObject.getString("data");
@@ -66,15 +66,4 @@ public class ProductListFragment extends BaseFragment {
             lvProductList.setAdapter(productAdapter3);//显示列表
         }
     }
-
-    @Override
-    protected void initTitle() {
-
-    }
-
-    @Override
-    public int getLayoutId() {
-        return R.layout.fragment_productlist;
-    }
-
 }

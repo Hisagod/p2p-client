@@ -5,7 +5,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
-import com.atguigu.p2pinvest0828.R;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.bean.Product;
 
 import java.util.List;

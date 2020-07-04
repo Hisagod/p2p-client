@@ -15,7 +15,6 @@ import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.atguigu.p2pinvest0828.R;
 
 // by HLP
 public class GestureEditActivity extends Activity {

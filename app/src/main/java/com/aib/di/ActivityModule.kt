@@ -9,12 +9,6 @@ import dagger.android.ContributesAndroidInjector
 ])
 interface ActivityModule {
     /**
-     * 欢迎界面
-     */
-    @ContributesAndroidInjector
-    abstract fun SplashActivity(): SplashActivity
-
-    /**
      * 主Activity
      */
     @ContributesAndroidInjector

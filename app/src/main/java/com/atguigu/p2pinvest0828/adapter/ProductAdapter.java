@@ -6,7 +6,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
 
-import com.atguigu.p2pinvest0828.R;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.bean.Product;
 import com.atguigu.p2pinvest0828.ui.RoundProgress;
 import com.atguigu.p2pinvest0828.util.UIUtils;

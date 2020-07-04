@@ -10,7 +10,7 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.view.View;
 
-import com.atguigu.p2pinvest0828.R;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 
 /**

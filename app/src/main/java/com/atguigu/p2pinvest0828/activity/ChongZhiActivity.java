@@ -13,8 +13,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.aib.p2p.R;
 import com.alipay.sdk.app.PayTask;
-import com.atguigu.p2pinvest0828.R;
 import com.atguigu.p2pinvest0828.common.BaseActivity;
 import com.atguigu.p2pinvest0828.util.pay.PayKeys;
 import com.atguigu.p2pinvest0828.util.pay.PayResult;

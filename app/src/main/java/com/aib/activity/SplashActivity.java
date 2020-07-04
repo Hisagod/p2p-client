@@ -10,7 +10,6 @@ import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
-import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Environment;
 import android.os.Handler;
@@ -18,12 +17,11 @@ import android.os.Message;
 import android.os.SystemClock;
 import android.widget.TextView;
 
-import com.aib.viewmodel.SplashViewModel;
+import com.aib.lib.base.activity.BaseActivity;
 import com.alibaba.fastjson.JSON;
-import com.atguigu.p2pinvest0828.R;
+import com.aib.p2p.R;
 import com.atguigu.p2pinvest0828.bean.UpdateInfo;
 import com.atguigu.p2pinvest0828.common.AppNetConfig;
-import com.atguigu.p2pinvest0828.databinding.ActivitySplashBinding;
 import com.atguigu.p2pinvest0828.util.UIUtils;
 import com.blankj.utilcode.constant.PermissionConstants;
 import com.blankj.utilcode.util.ActivityUtils;
@@ -31,8 +29,6 @@ import com.blankj.utilcode.util.BarUtils;
 import com.blankj.utilcode.util.PermissionUtils;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.AsyncHttpResponseHandler;
-
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -42,12 +38,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.List;
 
-import javax.inject.Inject;
-
-
-public class SplashActivity extends BaseOldActivity<ActivitySplashBinding> {
-    @Inject
-    SplashViewModel vm;
+public class SplashActivity extends BaseActivity {
     private static final int TO_MAIN = 1;
     private static final int DOWNLOAD_VERSION_SUCCESS = 2;
     private static final int DOWNLOAD_APK_FAIL = 3;
@@ -259,12 +250,12 @@ public class SplashActivity extends BaseOldActivity<ActivitySplashBinding> {
     }
 
     @Override
-    protected int getResId() {
+    public int getLayoutId() {
         return R.layout.activity_splash;
     }
 
     @Override
-    protected void initData(@Nullable Bundle savedInstanceState) {
+    public void initData() {
         BarUtils.setStatusBarColor(this, 0);
 
         PermissionUtils.permission(PermissionConstants.PHONE).callback(new PermissionUtils.FullCallback() {

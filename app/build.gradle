@@ -6,7 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.atguigu.p2pinvest0828"
+        applicationId "com.aib.p2p"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
@@ -22,11 +22,15 @@ android {
     dataBinding {
         enabled true
     }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
 }
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'androidx.appcompat:appcompat:1.0.0-beta01'
     implementation files('libs/android-async-http-master.jar')
     implementation 'com.squareup.picasso:picasso:2.5.2'
     //    compile project(':ViewPagerIndicator')
@@ -51,26 +55,17 @@ dependencies {
     implementation files('libs/ShareSDK-Wechat-Core-2.7.10.jar')
     implementation files('libs/ShareSDK-Wechat-Favorite-2.7.10.jar')
     implementation files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
-    //kotlin
-    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
     //工具类
     implementation 'com.blankj:utilcode:1.23.4'
-    //
-    implementation 'com.google.android.material:material:1.0.0-beta01'
-    //banner
-    implementation 'com.youth.banner:banner:1.4.10'
-    //retrofit
-    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.5.0'
-    implementation 'com.squareup.retrofit2:converter-gson:2.5.0'
     //net-log
     implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
     //rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.2.6'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
     //dagger
     implementation 'com.google.dagger:dagger:2.20'
-    implementation 'androidx.constraintlayout:constraintlayout:1.1.2'
+    implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation project(path: ':LibBase')
     kapt 'com.google.dagger:dagger-compiler:2.20'
     implementation 'com.google.dagger:dagger-android:2.20'
     implementation 'com.google.dagger:dagger-android-support:2.20'

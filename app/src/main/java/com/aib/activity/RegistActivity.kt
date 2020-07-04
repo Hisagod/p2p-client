@@ -3,10 +3,10 @@ package com.aib.activity
 import androidx.lifecycle.Observer
 import android.os.Bundle
 import android.text.TextUtils
+import com.aib.p2p.R
+import com.aib.p2p.databinding.ActivityUserRegistBinding
 import com.aib.viewmodel.RegisterViewModel
 
-import com.atguigu.p2pinvest0828.R
-import com.atguigu.p2pinvest0828.databinding.ActivityUserRegistBinding
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils

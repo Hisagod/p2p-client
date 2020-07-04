@@ -16,7 +16,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.atguigu.p2pinvest0828.R;
 
 //by hlp
 public class GestureVerifyActivity extends Activity {
