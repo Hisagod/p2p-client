@@ -11,6 +11,7 @@ fun <D> BaseBean<D>.convert(): D {
     when (code) {
         0 -> return data
         1 -> {
+            //去注册
             ARouter.getInstance().build(ArouterPath.PATH_REGISTER).navigation()
             return data
         }

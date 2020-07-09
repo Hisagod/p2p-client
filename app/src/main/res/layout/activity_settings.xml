@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
+
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -72,6 +73,7 @@
                 android:background="@color/divider_line" />
 
             <TextView
+                android:id="@+id/tv_about"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:background="?selectableItemBackground"
@@ -80,7 +82,7 @@
                 android:gravity="center_vertical"
                 android:paddingLeft="20dp"
                 android:paddingRight="20dp"
-                android:text="关于山竹理财"
+                android:text="关于"
                 android:textColor="@android:color/black"
                 android:textSize="16sp" />
         </LinearLayout>

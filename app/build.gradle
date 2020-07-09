@@ -2,6 +2,7 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-kapt'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.mob.sdk'
 
 android {
     compileSdkVersion 28
@@ -35,34 +36,35 @@ kapt {
     }
 }
 
+//MOB分享SDK
+MobSDK {
+    appKey "30027aaa987f9"
+    appSecret "ee5896b434466f5f7dac39f8f79901a8"
+    ShareSDK {
+        loopShare false
+        devInfo {
+            Wechat {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+                userName "gh_afb25ac019c9"
+                path "pages/index/index.html?id=1"
+                withShareTicket true
+                miniprogramType 2
+            }
+            WechatMoments {
+                appId "wx4868b35061f87885"
+                appSecret "64020361b8ec4c99936c0e3999a9f249"
+            }
+        }
+    }
+}
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation files('libs/android-async-http-master.jar')
-    implementation 'com.squareup.picasso:picasso:2.5.2'
-    //    compile project(':ViewPagerIndicator')
     implementation files('libs/alipaysdk.jar')
     implementation files('libs/alipaysecsdk.jar')
     implementation files('libs/alipayutdid.jar')
-    //    compile project(':MPChartLib')
-    implementation files('libs/MobCommons-2016.1107.1809.jar')
-    implementation files('libs/MobTools-2016.1107.1809.jar')
-    implementation files('libs/ShareSDK-Alipay-2.7.10.jar')
-    implementation files('libs/ShareSDK-Alipay-Core-2.7.10.jar')
-    implementation files('libs/ShareSDK-Alipay-Moments-2.7.10.jar')
-    implementation files('libs/ShareSDK-Core-2.7.10.jar')
-    implementation files('libs/ShareSDK-Evernote-2.7.10.jar')
-    implementation files('libs/ShareSDK-QQ-2.7.10.jar')
-    implementation files('libs/ShareSDK-QZone-2.7.10.jar')
-    implementation files('libs/ShareSDK-Renren-2.7.10.jar')
-    implementation files('libs/ShareSDK-ShortMessage-2.7.10.jar')
-    implementation files('libs/ShareSDK-SinaWeibo-2.7.10.jar')
-    implementation files('libs/ShareSDK-TencentWeibo-2.7.10.jar')
-    implementation files('libs/ShareSDK-Wechat-2.7.10.jar')
-    implementation files('libs/ShareSDK-Wechat-Core-2.7.10.jar')
-    implementation files('libs/ShareSDK-Wechat-Favorite-2.7.10.jar')
-    implementation files('libs/ShareSDK-Wechat-Moments-2.7.10.jar')
-    //net-log
-    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+
     //rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.19'
@@ -70,10 +72,6 @@ dependencies {
     implementation 'com.google.dagger:dagger:2.20'
 
     implementation project(path: ':LibBase')
-    kapt 'com.google.dagger:dagger-compiler:2.20'
-    implementation 'com.google.dagger:dagger-android:2.20'
-    implementation 'com.google.dagger:dagger-android-support:2.20'
-    kapt 'com.google.dagger:dagger-android-processor:2.20'
 
     //https://github.com/alibaba/ARouter
     kapt 'com.alibaba:arouter-compiler:1.2.2'

@@ -92,7 +92,7 @@
                         android:textColor="@color/home_back_unselected" />
                 </LinearLayout>
 
-                <com.atguigu.p2pinvest0828.ui.RoundProgress
+                <com.aib.lib.base.widget.RoundProgress
                     android:id="@+id/roundPro_home"
                     android:layout_width="120dp"
                     android:layout_height="120dp"

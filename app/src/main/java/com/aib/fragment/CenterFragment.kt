@@ -2,55 +2,68 @@ package com.aib.fragment
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.view.View
 
 import com.aib.utils.Constants
 import com.aib.p2p.R
 import com.aib.activity.LoginActivity
 import com.aib.activity.SettingsActivity
+import com.aib.lib.base.image.GlideManager
+import com.aib.lib.base.sp.SpKeyConstant
+import com.aib.activity.UserInfoActivity
+import com.aib.activity.ChongZhiActivity
+import com.aib.activity.TiXianActivity
+import com.aib.lib.base.fragment.BaseFragment
 import com.blankj.utilcode.util.ActivityUtils
+import com.blankj.utilcode.util.SPStaticUtils
 import com.blankj.utilcode.util.SPUtils
 import com.blankj.utilcode.util.ThreadUtils
 import kotlinx.android.synthetic.main.fragment_center.*
 
 class CenterFragment : BaseFragment() {
-//    fun setting(view: View) {
-//        //启动用户信息界面的Activity
-//        (this.activity as BaseActivity).goToActivity(UserInfoActivity::class.java, null)
-//    }
-//
-//    //设置“充值”操作
-//    fun reCharge(view: View) {
-//        (this.activity as BaseActivity).goToActivity(ChongZhiActivity::class.java, null)
-//    }
-//
-//    //设置“提现”操作
-//    fun withdraw(view: View) {
-//        (this.activity as BaseActivity).goToActivity(TiXianActivity::class.java, null)
-//    }
-//
-//    //启动折线图
-//    fun startLineChart(view: View) {
-//        (this.activity as BaseActivity).goToActivity(LineChartActivity::class.java, null)
-//    }
-//
-//    //启动折线图
-//    fun startBarChart(view: View) {
-//        (this.activity as BaseActivity).goToActivity(BarChartActivity::class.java, null)
-//    }
-//
-//    //启动折线图
-//    fun startPieChart(view: View) {
-//        (this.activity as BaseActivity).goToActivity(PieChartActivity::class.java, null)
-//    }
 
-    override fun getResId(): Int = R.layout.fragment_center
-
-    override fun initData(savedInstanceState: Bundle?) {
+    override fun getLayoutId(): Int =R.layout.fragment_center
+    override fun initData() {
         openSettings()
 
         iv_avatar.setOnClickListener {
             ActivityUtils.startActivity(LoginActivity::class.java)
+        }
+
+        loadPersonalInfo()
+        enterUserCenter()
+        openRechange()
+        openWithdraw()
+    }
+
+    private fun loadPersonalInfo() {
+        GlideManager.getInstance.loadAvatarNetPath(iv_avatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
+        tv_me_name.text = SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_NAME)
+    }
+
+    /**
+     * 进入用户中心
+     */
+    private fun enterUserCenter() {
+        rl_me.setOnClickListener {
+            ActivityUtils.startActivity(UserInfoActivity::class.java)
+        }
+    }
+
+    /**
+     * 充值
+     */
+    private fun openRechange() {
+        recharge.setOnClickListener {
+            ActivityUtils.startActivity(ChongZhiActivity::class.java)
+        }
+    }
+
+    /**
+     * 提现
+     */
+    private fun openWithdraw() {
+        withdraw.setOnClickListener {
+            ActivityUtils.startActivity(TiXianActivity::class.java)
         }
     }
 

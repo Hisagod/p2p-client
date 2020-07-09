@@ -2,6 +2,7 @@ package com.aib.lib.base.net
 
 import com.aib.lib.base.bean.BannerBean
 import com.aib.lib.base.bean.BaseBean
+import com.aib.lib.base.bean.ProductBean
 import com.aib.lib.base.bean.UserBean
 import io.reactivex.Observable
 import retrofit2.http.Field
@@ -22,4 +23,7 @@ interface ApiService {
     @POST("user/login")
     @FormUrlEncoded
     suspend fun login(@Field("phone") phone: String, @Field("pwd") pwd: String): BaseBean<UserBean>
+
+    @GET("product/getProduct")
+    suspend fun getProductList():BaseBean<List<ProductBean>>
 }

@@ -26,7 +26,9 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/et_pwd"
@@ -34,7 +36,7 @@
             android:layout_height="wrap_content"
             android:gravity="center_vertical"
             android:hint="请输入密码"
-            android:inputType="phone"
+            android:inputType="numberPassword"
             android:maxLines="1"
             android:singleLine="true"
             android:textColor="#5c5c5c"

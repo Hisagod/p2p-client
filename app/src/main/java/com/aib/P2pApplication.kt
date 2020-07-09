@@ -1,32 +1,20 @@
 package com.aib
 
-import android.app.Activity
 import android.app.Application
 import android.content.Context
-import android.os.Bundle
 import android.os.Handler
-
-import cn.sharesdk.framework.ShareSDK
-import com.aib.di.DaggerAppComponent
-import com.aib.activity.BaseOldActivity
-import com.aib.fragment.BaseOldFragment
 import com.aib.lib.base.BuildConfig
+import com.aib.other.DefaultPage
+import com.aib.p2p.R
 import com.alibaba.android.arouter.launcher.ARouter
-import dagger.android.AndroidInjection
-import dagger.android.AndroidInjector
-import dagger.android.DispatchingAndroidInjector
-import dagger.android.HasActivityInjector
-import dagger.android.support.AndroidSupportInjection
-import javax.inject.Inject
+import com.blankj.utilcode.util.Utils
+import com.orhanobut.logger.AndroidLogAdapter
+import com.orhanobut.logger.FormatStrategy
+import com.orhanobut.logger.Logger
+import com.orhanobut.logger.PrettyFormatStrategy
 
-class P2pApplication : Application(), HasActivityInjector {
-    @Inject
-    lateinit var activityInject: DispatchingAndroidInjector<Activity>
 
-    override fun activityInjector(): AndroidInjector<Activity> {
-        return activityInject
-    }
-
+class P2pApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
@@ -35,47 +23,10 @@ class P2pApplication : Application(), HasActivityInjector {
         mainThread = Thread.currentThread()//实例化当前Application的线程即为主线程
         mainThreadId = android.os.Process.myTid()//获取当前线程的id
 
-        //初始化ShareSDK
-        ShareSDK.initSDK(this)
-
-        DaggerAppComponent.create().inject(this)
-        registerActivityLifecycleCallbacks(object : Application.ActivityLifecycleCallbacks {
-            override fun onActivityPaused(activity: Activity?) {
-
-            }
-
-            override fun onActivityResumed(activity: Activity?) {
-            }
-
-            override fun onActivityStarted(activity: Activity?) {
-            }
-
-            override fun onActivityDestroyed(activity: Activity?) {
-            }
-
-            override fun onActivitySaveInstanceState(activity: Activity?, outState: Bundle?) {
-            }
-
-            override fun onActivityStopped(activity: Activity?) {
-            }
-
-            override fun onActivityCreated(activity: Activity?, savedInstanceState: Bundle?) {
-                if (activity is BaseOldActivity<*>) {
-                    AndroidInjection.inject(activity)
-
-                    activity.supportFragmentManager.registerFragmentLifecycleCallbacks(object : androidx.fragment.app.FragmentManager.FragmentLifecycleCallbacks() {
-                        override fun onFragmentCreated(fm: androidx.fragment.app.FragmentManager, f: androidx.fragment.app.Fragment, savedInstanceState: Bundle?) {
-                            super.onFragmentCreated(fm, f, savedInstanceState)
-                            if (f is BaseOldFragment<*>) {
-                                AndroidSupportInjection.inject(f)
-                            }
-                        }
-                    }, true)
-                }
-            }
-        })
-
         initArouter()
+        initUtils()
+        initLogger()
+        initDefaultPage()
     }
 
     private fun initArouter() {
@@ -84,6 +35,28 @@ class P2pApplication : Application(), HasActivityInjector {
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
         ARouter.init(this); // 尽可能早，推荐在Application中初始化
+    }
+
+    private fun initUtils() {
+        Utils.init(this)
+    }
+
+    private fun initLogger() {
+        val formatStrategy: FormatStrategy = PrettyFormatStrategy.newBuilder()
+                .showThreadInfo(false) // (Optional) Whether to show thread info or not. Default true
+                .methodCount(0) // (Optional) How many method line to show. Default 2
+                .methodOffset(7) // (Optional) Hides internal method calls up to offset. Default 5
+                .tag("Json") // (Optional) Global tag for every log. Default PRETTY_LOGGER
+                .build()
+        Logger.addLogAdapter(object : AndroidLogAdapter(formatStrategy) {
+            override fun isLoggable(priority: Int, tag: String?): Boolean {
+                return com.aib.p2p.BuildConfig.DEBUG
+            }
+        })
+    }
+
+    private fun initDefaultPage() {
+        DefaultPage.init(R.layout.page_loading, R.layout.page_empty, R.layout.page_error)
     }
 
     companion object {
