@@ -24,6 +24,13 @@ class GlideManager {
     fun loadAvatarNetPath(view: ImageView, url: String) {
         Glide.with(view.context)
                 .setDefaultRequestOptions(RequestOptions().placeholder(R.drawable.ic_avatar))
+                .load(NetConstants.BASE_URL + url)
+                .into(view)
+    }
+
+    fun loadAvatarLocalPath(view: ImageView, url: String) {
+        Glide.with(view.context)
+                .setDefaultRequestOptions(RequestOptions().placeholder(R.drawable.ic_avatar))
                 .load(url)
                 .into(view)
     }

@@ -1,34 +1,25 @@
 package com.aib.fragment
 
-import android.os.Bundle
-import android.text.TextUtils
-
-import com.aib.utils.Constants
 import com.aib.p2p.R
-import com.aib.activity.LoginActivity
 import com.aib.activity.SettingsActivity
 import com.aib.lib.base.image.GlideManager
 import com.aib.lib.base.sp.SpKeyConstant
 import com.aib.activity.UserInfoActivity
 import com.aib.activity.ChongZhiActivity
 import com.aib.activity.TiXianActivity
+import com.aib.lib.base.arouter.ArouterPath
 import com.aib.lib.base.fragment.BaseFragment
-import com.blankj.utilcode.util.ActivityUtils
-import com.blankj.utilcode.util.SPStaticUtils
-import com.blankj.utilcode.util.SPUtils
-import com.blankj.utilcode.util.ThreadUtils
+import com.aib.utils.UserUtils
+import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.*
 import kotlinx.android.synthetic.main.fragment_center.*
 
 class CenterFragment : BaseFragment() {
 
-    override fun getLayoutId(): Int =R.layout.fragment_center
+    override fun getLayoutId(): Int = R.layout.fragment_center
     override fun initData() {
         openSettings()
-
-        iv_avatar.setOnClickListener {
-            ActivityUtils.startActivity(LoginActivity::class.java)
-        }
-
+        openAvatar()
         loadPersonalInfo()
         enterUserCenter()
         openRechange()
@@ -40,12 +31,26 @@ class CenterFragment : BaseFragment() {
         tv_me_name.text = SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_NAME)
     }
 
+    private fun openAvatar() {
+        iv_avatar.setOnClickListener {
+            if (UserUtils.isLogin()) {
+                ActivityUtils.startActivity(UserInfoActivity::class.java)
+            } else {
+                ARouter.getInstance().build(ArouterPath.PATH_LOGIN).navigation()
+            }
+        }
+    }
+
     /**
      * 进入用户中心
      */
     private fun enterUserCenter() {
         rl_me.setOnClickListener {
-            ActivityUtils.startActivity(UserInfoActivity::class.java)
+            if (UserUtils.isLogin()) {
+                ActivityUtils.startActivity(UserInfoActivity::class.java)
+            } else {
+                ARouter.getInstance().build(ArouterPath.PATH_LOGIN).navigation()
+            }
         }
     }
 
@@ -71,25 +76,5 @@ class CenterFragment : BaseFragment() {
         iv_settings.setOnClickListener {
             ActivityUtils.startActivity(SettingsActivity::class.java)
         }
-    }
-
-    /**
-     * 打开图库
-     */
-    fun openGallery() {
-        ThreadUtils.executeByIo(object : ThreadUtils.SimpleTask<String>() {
-            @Throws(Throwable::class)
-            override fun doInBackground(): String? {
-                return SPUtils.getInstance().getString(Constants.TOKEN)
-            }
-
-            override fun onSuccess(result: String?) {
-                if (TextUtils.isEmpty(result)) {
-                    ActivityUtils.startActivity(LoginActivity::class.java)
-                } else {
-
-                }
-            }
-        })
     }
 }

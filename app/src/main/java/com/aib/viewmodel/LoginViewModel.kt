@@ -4,15 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.aib.lib.base.bean.UserBean
+import com.aib.lib.base.net.Resource
 import com.aib.lib.base.net.convert
 import kotlinx.coroutines.launch
 
 class LoginViewModel : BaseViewModel() {
-    fun login(phone: String, pwd: String): LiveData<UserBean> {
-        val data = MutableLiveData<UserBean>()
+    fun login(phone: String, pwd: String): LiveData<Resource<UserBean>> {
+        val data = MutableLiveData<Resource<UserBean>>()
         viewModelScope.launch {
-            val bean = api.login(phone, pwd).convert()
-            data.value = bean
+            runCatching {
+                val bean = api.login(phone, pwd).convert()
+                data.value = Resource.success(bean)
+            }.onFailure {
+                data.value = Resource.error(it.message ?: "加载失败")
+            }
         }
         return data
     }

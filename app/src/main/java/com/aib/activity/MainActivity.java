@@ -4,7 +4,9 @@ import androidx.annotation.NonNull;
 
 import com.aib.fragment.ProductFragment;
 import com.aib.lib.base.activity.BaseActivity;
+import com.aib.lib.base.arouter.ArouterPath;
 import com.aib.p2p.R;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import androidx.fragment.app.Fragment;
@@ -19,7 +21,7 @@ import com.aib.fragment.HomeFragment;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Route(path = ArouterPath.PATH_MAIN)
 public class MainActivity extends BaseActivity {
     private List<Fragment> fragmentList = new ArrayList<>();
 

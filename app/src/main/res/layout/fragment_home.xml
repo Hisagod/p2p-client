@@ -1,153 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:atguigu="http://schemas.android.com/apk/res-auto"
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.Toolbar style="@style/toolbar_style">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:text="首页"
+                android:textColor="@android:color/white"
+                android:textSize="18sp" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <com.aib.view.DefaultView
+        android:id="@+id/dv"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <androidx.appcompat.widget.Toolbar style="@style/toolbar_style">
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_centerInParent="true"
-                    android:text="首页"
-                    android:textColor="@android:color/white"
-                    android:textSize="18sp" />
-            </RelativeLayout>
-        </androidx.appcompat.widget.Toolbar>
-
-        <androidx.core.widget.NestedScrollView
+        <com.scwang.smart.refresh.layout.SmartRefreshLayout
+            android:id="@+id/srl"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:fillViewport="true">
+            app:srlEnableLoadMore="false">
 
-            <LinearLayout
+            <com.scwang.smart.refresh.header.ClassicsHeader
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:srlEnableLastTime="false" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:gravity="center_horizontal"
-                android:orientation="vertical">
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+        </com.scwang.smart.refresh.layout.SmartRefreshLayout>
+    </com.aib.view.DefaultView>
+</LinearLayout>
 
-                <com.youth.banner.Banner
-                    android:id="@+id/banner"
-                    android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    atguigu:delay_time="5000" />
-
-                <TextView
-                    android:id="@+id/tv_home_product"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginBottom="20dp"
-                    android:drawableRight="@drawable/recommend"
-                    android:drawablePadding="4dp"
-                    android:text="硅谷堂180计划第一期"
-                    android:textColor="@color/product_detail_common"
-                    android:textSize="30sp" />
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="40dp"
-                    android:layout_marginRight="40dp"
-                    android:layout_marginBottom="10dp">
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_attribute_bg"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="本息保障"
-                        android:textColor="@color/home_back_unselected" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="8dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_attribute_bg"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="每日计息"
-                        android:textColor="@color/home_back_unselected" />
-
-                    <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:background="@drawable/home_attribute_bg"
-                        android:gravity="center"
-                        android:padding="5dp"
-                        android:text="高额收益"
-                        android:textColor="@color/home_back_unselected" />
-                </LinearLayout>
-
-                <com.aib.lib.base.widget.RoundProgress
-                    android:id="@+id/roundPro_home"
-                    android:layout_width="120dp"
-                    android:layout_height="120dp"
-                    android:layout_marginTop="10dp"
-                    atguigu:max="100"
-                    atguigu:progress="70"
-                    atguigu:roundColor="@color/more_text"
-                    atguigu:roundProgressColor="@color/round_red_common"
-                    atguigu:roundWith="10dp"
-                    atguigu:textColor="@color/title_back"
-                    atguigu:textSize="20dp" />
-
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="预期年利率："
-                        android:textColor="@color/product_detail_common"
-                        android:textSize="20sp"
-
-                        />
-
-                    <TextView
-                        android:id="@+id/tv_home_yearrate"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="10% + 2%"
-                        android:textColor="@color/product_detail_common"
-                        android:textSize="20sp" />
-
-                </LinearLayout>
-
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginRight="20dp"
-                    android:background="@drawable/home"
-                    android:text="立即加入"
-                    android:textColor="@color/white"
-                    android:textSize="30sp" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:drawableLeft="@drawable/guarantee_icon"
-                    android:text="风险保障金由硅谷银行监管"
-                    android:textColor="@color/home_back_unselected" />
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </LinearLayout>
-</layout>

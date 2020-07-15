@@ -1,23 +1,25 @@
 package com.aib.lib.base.net
 
-import com.aib.lib.base.bean.BannerBean
 import com.aib.lib.base.bean.BaseBean
+import com.aib.lib.base.bean.HomeBean
 import com.aib.lib.base.bean.ProductBean
 import com.aib.lib.base.bean.UserBean
-import io.reactivex.Observable
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.POST
 
 interface ApiService {
-    @POST("")
+    /**
+     * 用户注册
+     */
+    @POST("user/register")
     @FormUrlEncoded
-    fun REGISTER(@Field("phone") phone: String, @Field("pwd") pwd: String): Observable<BaseBean<String>>
+    suspend fun register(@Field("phone") phone: String, @Field("pwd") pwd: String): BaseBean<Any>
 
     //获取Banner数据
-    @GET("banner/getBannerList")
-    suspend fun getBanner(): BaseBean<List<BannerBean>>
+    @GET("banner/getHome")
+    suspend fun getHome(): BaseBean<HomeBean>
 
     //用户登录
     @POST("user/login")
@@ -25,5 +27,5 @@ interface ApiService {
     suspend fun login(@Field("phone") phone: String, @Field("pwd") pwd: String): BaseBean<UserBean>
 
     @GET("product/getProduct")
-    suspend fun getProductList():BaseBean<List<ProductBean>>
+    suspend fun getProductList(): BaseBean<List<ProductBean>>
 }

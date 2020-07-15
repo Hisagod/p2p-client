@@ -12,6 +12,11 @@ import com.blankj.utilcode.util.PermissionUtils.FullCallback
 import kotlinx.android.synthetic.main.activity_splash.*
 
 class SplashActivity : BaseActivity() {
+    private val permissions = arrayOf(
+            PermissionConstants.PHONE,
+            PermissionConstants.STORAGE
+    )
+
     override fun getLayoutId(): Int {
         return R.layout.activity_splash
     }
@@ -21,7 +26,7 @@ class SplashActivity : BaseActivity() {
 
         showVersion()
 
-        PermissionUtils.permission(PermissionConstants.PHONE).callback(object : FullCallback {
+        PermissionUtils.permission(*permissions).callback(object : FullCallback {
             override fun onGranted(permissionsGranted: List<String>) {
                 object : CountDownTimer(3000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {}

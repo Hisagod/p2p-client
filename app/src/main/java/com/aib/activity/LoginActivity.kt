@@ -6,9 +6,11 @@ import com.aib.lib.base.arouter.ArouterPath
 import com.aib.lib.base.bean.UserBean
 import com.aib.lib.base.expand.getViewModel
 import com.aib.lib.base.expand.showDialog
+import com.aib.lib.base.net.NetStatus
 import com.aib.lib.base.sp.SpKeyConstant
 import com.aib.p2p.R
 import com.aib.viewmodel.LoginViewModel
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import kotlinx.android.synthetic.main.activity_login.*
@@ -16,6 +18,7 @@ import kotlinx.android.synthetic.main.activity_login.*
 /**
  * 登录
  */
+@Route(path = ArouterPath.PATH_LOGIN)
 class LoginActivity : BaseToolbarActivity() {
     private val vm by lazy { getViewModel(LoginViewModel::class.java) }
 
@@ -63,10 +66,18 @@ class LoginActivity : BaseToolbarActivity() {
 
             showDialog { dialog ->
                 vm.login(phone, EncryptUtils.encryptMD5ToString(pwd)).observe(this, Observer {
-                    if (it != null) {
-                        saveData(it)
-                        dialog.dismiss()
-                        finish()
+                    when (it.status) {
+                        NetStatus.LOAD -> TODO()
+                        NetStatus.SUCCESS -> {
+                            saveData(it.data!!)
+                            dialog.dismiss()
+                            finish()
+                        }
+                        NetStatus.ERROR -> {
+                            dialog.dismiss()
+                            ToastUtils.showShort(it.msg)
+                        }
+                        NetStatus.EMPTY -> TODO()
                     }
                 })
             }
