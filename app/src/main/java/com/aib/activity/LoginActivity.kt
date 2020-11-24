@@ -4,6 +4,8 @@ import androidx.lifecycle.Observer
 import com.aib.lib.base.activity.BaseToolbarActivity
 import com.aib.lib.base.arouter.ArouterPath
 import com.aib.lib.base.bean.UserBean
+import com.aib.lib.base.event.EventCode
+import com.aib.lib.base.event.EventData
 import com.aib.lib.base.expand.getViewModel
 import com.aib.lib.base.expand.showDialog
 import com.aib.lib.base.net.NetStatus
@@ -14,6 +16,7 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import kotlinx.android.synthetic.main.activity_login.*
+import org.greenrobot.eventbus.EventBus
 
 /**
  * 登录
@@ -71,6 +74,7 @@ class LoginActivity : BaseToolbarActivity() {
                         NetStatus.SUCCESS -> {
                             saveData(it.data!!)
                             dialog.dismiss()
+                            EventBus.getDefault().postSticky(EventData(EventCode.CODE_UPDATE_USER, null))
                             finish()
                         }
                         NetStatus.ERROR -> {

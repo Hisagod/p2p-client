@@ -56,7 +56,11 @@ class P2pApplication : Application() {
     }
 
     private fun initDefaultPage() {
-        DefaultPage.init(R.layout.page_loading, R.layout.page_empty, R.layout.page_error)
+        DefaultPage.Builder()
+                .empty(R.layout.page_empty)
+                .load(R.layout.page_loading)
+                .error( R.layout.page_error)
+                .build()
     }
 
     companion object {

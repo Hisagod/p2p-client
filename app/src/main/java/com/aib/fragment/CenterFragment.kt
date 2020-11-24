@@ -1,5 +1,6 @@
 package com.aib.fragment
 
+import android.os.Bundle
 import com.aib.p2p.R
 import com.aib.activity.SettingsActivity
 import com.aib.lib.base.image.GlideManager
@@ -8,15 +9,26 @@ import com.aib.activity.UserInfoActivity
 import com.aib.activity.ChongZhiActivity
 import com.aib.activity.TiXianActivity
 import com.aib.lib.base.arouter.ArouterPath
+import com.aib.lib.base.event.EventCode
+import com.aib.lib.base.event.EventData
 import com.aib.lib.base.fragment.BaseFragment
 import com.aib.utils.UserUtils
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import kotlinx.android.synthetic.main.fragment_center.*
+import org.greenrobot.eventbus.EventBus
+import org.greenrobot.eventbus.Subscribe
+import org.greenrobot.eventbus.ThreadMode
 
 class CenterFragment : BaseFragment() {
 
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        EventBus.getDefault().register(this)
+    }
+
     override fun getLayoutId(): Int = R.layout.fragment_center
+
     override fun initData() {
         openSettings()
         openAvatar()
@@ -24,6 +36,11 @@ class CenterFragment : BaseFragment() {
         enterUserCenter()
         openRechange()
         openWithdraw()
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        EventBus.getDefault().unregister(this)
     }
 
     private fun loadPersonalInfo() {
@@ -39,6 +56,16 @@ class CenterFragment : BaseFragment() {
                 ARouter.getInstance().build(ArouterPath.PATH_LOGIN).navigation()
             }
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
+    fun onEvent(data: EventData<Any>) {
+        when (data.code) {
+            EventCode.CODE_UPDATE_USER -> {
+                loadPersonalInfo()
+            }
+        }
+        EventBus.getDefault().removeStickyEvent(data)
     }
 
     /**
