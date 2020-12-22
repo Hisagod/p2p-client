@@ -12,8 +12,9 @@ import com.orhanobut.logger.AndroidLogAdapter
 import com.orhanobut.logger.FormatStrategy
 import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
+import dagger.hilt.android.HiltAndroidApp
 
-
+@HiltAndroidApp
 class P2pApplication : Application() {
     override fun onCreate() {
         super.onCreate()
@@ -59,7 +60,7 @@ class P2pApplication : Application() {
         DefaultPage.Builder()
                 .empty(R.layout.page_empty)
                 .load(R.layout.page_loading)
-                .error( R.layout.page_error)
+                .error(R.layout.page_error)
                 .build()
     }
 
