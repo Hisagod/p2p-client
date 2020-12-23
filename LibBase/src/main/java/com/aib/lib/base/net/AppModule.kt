@@ -1,17 +1,18 @@
 package com.aib.lib.base.net
 
+import dagger.Module
+import dagger.Provides
+import dagger.hilt.InstallIn
+import dagger.hilt.android.components.ApplicationComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
+import javax.inject.Singleton
 
-class RetrofitManager private constructor() {
-    companion object {
-        val getInstance: RetrofitManager by lazy(mode = LazyThreadSafetyMode.SYNCHRONIZED) {
-            RetrofitManager()
-        }
-    }
-
+@Module
+@InstallIn(ApplicationComponent::class)
+object Api {
     private val client = {
         OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor()
@@ -19,12 +20,14 @@ class RetrofitManager private constructor() {
                 .build()
     }
 
-    fun <T> getApiService(clazz: Class<T>): T {
+    @Singleton
+    @Provides
+    fun getApiService(): ApiService {
         return Retrofit.Builder()
                 .addConverterFactory(GsonConverterFactory.create())
                 .baseUrl(NetConstants.BASE_URL)
                 .client(client())
                 .build()
-                .create(clazz)
+                .create(ApiService::class.java)
     }
 }

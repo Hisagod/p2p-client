@@ -1,17 +1,26 @@
 package com.aib.activity
 
 import android.os.CountDownTimer
+import androidx.activity.viewModels
 import com.aib.base.activity.BaseActivity
+import com.aib.lib.base.arouter.ArouterPath
 import com.aib.p2p.R
 import com.aib.p2p.databinding.ActivitySplashBinding
+import com.aib.sdk.arouter.ArouterManager
+import com.aib.viewmodel.SplashViewModel
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.constant.PermissionConstants
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.PermissionUtils
 import com.blankj.utilcode.util.PermissionUtils.FullCallback
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
+@Route(path = ArouterPath.PATH_SPLASH)
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
+    private val vm by viewModels<SplashViewModel>()
+
     private val permissions = arrayOf(
             PermissionConstants.PHONE,
             PermissionConstants.STORAGE
@@ -31,7 +40,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 object : CountDownTimer(3000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {}
                     override fun onFinish() {
-                        ActivityUtils.startActivity(MainActivity::class.java)
+                        ArouterManager.getInstance.openMainPage()
                         finish()
                     }
                 }.start()
