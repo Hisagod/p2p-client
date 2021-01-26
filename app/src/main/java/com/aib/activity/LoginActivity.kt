@@ -1,15 +1,16 @@
 package com.aib.activity
 
+import androidx.activity.viewModels
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import com.aib.lib.base.activity.BaseToolbarActivity
-import com.aib.lib.base.arouter.ArouterPath
-import com.aib.lib.base.bean.UserBean
-import com.aib.lib.base.event.EventCode
-import com.aib.lib.base.event.EventData
-import com.aib.lib.base.expand.getViewModel
-import com.aib.lib.base.expand.showDialog
-import com.aib.lib.base.net.NetStatus
-import com.aib.lib.base.sp.SpKeyConstant
+import com.aib.base.activity.BaseToolbarActivity
+import com.aib.sdk.arouter.ArouterPath
+import com.aib.bean.UserBean
+import com.aib.sdk.event.EventCode
+import com.aib.sdk.event.EventData
+import com.aib.expand.showDialog
+import com.aib.net.Status
+import com.aib.sdk.sp.SpKeyConstant
 import com.aib.p2p.R
 import com.aib.viewmodel.LoginViewModel
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -22,8 +23,8 @@ import org.greenrobot.eventbus.EventBus
  * 登录
  */
 @Route(path = ArouterPath.PATH_LOGIN)
-class LoginActivity : BaseToolbarActivity() {
-    private val vm by lazy { getViewModel(LoginViewModel::class.java) }
+class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
+    private val vm by viewModels<LoginViewModel>()
 
     override fun setTitle(): String {
         return "登录"
@@ -70,18 +71,18 @@ class LoginActivity : BaseToolbarActivity() {
             showDialog { dialog ->
                 vm.login(phone, EncryptUtils.encryptMD5ToString(pwd)).observe(this, Observer {
                     when (it.status) {
-                        NetStatus.LOAD -> TODO()
-                        NetStatus.SUCCESS -> {
+                        Status.LOAD -> TODO()
+                        Status.SUCCESS -> {
                             saveData(it.data!!)
                             dialog.dismiss()
                             EventBus.getDefault().postSticky(EventData(EventCode.CODE_UPDATE_USER, null))
                             finish()
                         }
-                        NetStatus.ERROR -> {
+                        Status.ERROR -> {
                             dialog.dismiss()
-                            ToastUtils.showShort(it.msg)
+                            ToastUtils.showShort(it.message)
                         }
-                        NetStatus.EMPTY -> TODO()
+                        Status.EMPTY -> TODO()
                     }
                 })
             }

@@ -1,6 +1,6 @@
 package com.aib.utils
 
-import com.aib.lib.base.sp.SpKeyConstant
+import com.aib.sdk.sp.SpKeyConstant
 import com.blankj.utilcode.util.SPStaticUtils
 
 class UserUtils {

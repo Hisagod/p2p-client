@@ -1,17 +1,18 @@
 package com.aib.fragment
 
 import android.os.Bundle
+import androidx.databinding.ViewDataBinding
 import com.aib.p2p.R
 import com.aib.activity.SettingsActivity
-import com.aib.lib.base.image.GlideManager
-import com.aib.lib.base.sp.SpKeyConstant
+import com.aib.utils.GlideManager
+import com.aib.sdk.sp.SpKeyConstant
 import com.aib.activity.UserInfoActivity
 import com.aib.activity.ChongZhiActivity
 import com.aib.activity.TiXianActivity
-import com.aib.lib.base.arouter.ArouterPath
-import com.aib.lib.base.event.EventCode
-import com.aib.lib.base.event.EventData
-import com.aib.lib.base.fragment.BaseFragment
+import com.aib.base.fragment.BaseFragment
+import com.aib.sdk.arouter.ArouterPath
+import com.aib.sdk.event.EventCode
+import com.aib.sdk.event.EventData
 import com.aib.utils.UserUtils
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
@@ -20,7 +21,7 @@ import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
 
-class CenterFragment : BaseFragment() {
+class CenterFragment : BaseFragment<ViewDataBinding>() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

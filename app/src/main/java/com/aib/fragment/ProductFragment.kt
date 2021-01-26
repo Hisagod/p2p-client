@@ -1,19 +1,20 @@
 package com.aib.fragment
 
+import androidx.databinding.ViewDataBinding
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
-import com.aib.lib.base.bean.ProductBean
-import com.aib.lib.base.expand.getViewModel
-import com.aib.lib.base.fragment.BaseFragment
-import com.aib.lib.base.net.NetStatus
-import com.aib.lib.base.widget.RoundProgress
+import com.aib.base.fragment.BaseFragment
+import com.aib.bean.ProductBean
+import com.aib.net.Status
+import com.aib.widget.RoundProgress
 import com.aib.p2p.R
 import com.aib.viewmodel.MainViewModel
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import kotlinx.android.synthetic.main.fragment_productlist.*
 
-class ProductFragment : BaseFragment() {
-    private val vm by lazy { getViewModel(MainViewModel::class.java) }
+class ProductFragment : BaseFragment<ViewDataBinding>() {
+    private val vm by viewModels<MainViewModel>()
     private lateinit var adapter: BaseQuickAdapter<ProductBean, BaseViewHolder>
     override fun getLayoutId(): Int {
         return R.layout.fragment_productlist
@@ -40,17 +41,17 @@ class ProductFragment : BaseFragment() {
     private fun loadData() {
         vm.getProductList().observe(this, Observer {
             when (it.status) {
-                NetStatus.LOAD -> dv.showLoad()
-                NetStatus.SUCCESS -> {
+                Status.LOAD -> dv.showLoad()
+                Status.SUCCESS -> {
                     dv.showSuccess()
                     adapter.setNewInstance(it.data as MutableList<ProductBean>?)
                 }
-                NetStatus.ERROR -> {
+                Status.ERROR -> {
                     dv.showError {
                         loadData()
                     }
                 }
-                NetStatus.EMPTY -> dv.showEmpty()
+                Status.EMPTY -> dv.showEmpty()
             }
         })
     }

@@ -3,10 +3,10 @@ package com.aib
 import android.app.Application
 import android.content.Context
 import android.os.Handler
-import com.aib.lib.base.BuildConfig
 import com.aib.other.DefaultPage
 import com.aib.p2p.R
 import com.alibaba.android.arouter.launcher.ARouter
+import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.Utils
 import dagger.hilt.android.HiltAndroidApp
 
@@ -26,7 +26,7 @@ class P2pApplication : Application() {
     }
 
     private fun initArouter() {
-        if (BuildConfig.DEBUG) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (AppUtils.isAppDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
             ARouter.openLog();     // 打印日志
             ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }

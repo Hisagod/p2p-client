@@ -1,12 +1,13 @@
 package com.aib.activity
 
 import android.text.TextUtils
+import androidx.activity.viewModels
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import com.aib.lib.base.activity.BaseToolbarActivity
-import com.aib.lib.base.arouter.ArouterPath
-import com.aib.lib.base.expand.getViewModel
-import com.aib.lib.base.expand.showDialog
-import com.aib.lib.base.net.NetStatus
+import com.aib.base.activity.BaseToolbarActivity
+import com.aib.sdk.arouter.ArouterPath
+import com.aib.expand.showDialog
+import com.aib.net.Status
 import com.aib.p2p.R
 import com.aib.viewmodel.RegisterViewModel
 import com.alibaba.android.arouter.facade.annotation.Route
@@ -16,8 +17,8 @@ import com.blankj.utilcode.util.ToastUtils
 import kotlinx.android.synthetic.main.activity_user_regist.*
 
 @Route(path = ArouterPath.PATH_REGISTER)
-class RegistActivity : BaseToolbarActivity() {
-    private val vm by lazy { getViewModel(RegisterViewModel::class.java) }
+class RegistActivity : BaseToolbarActivity<ViewDataBinding>() {
+    private val vm by viewModels<RegisterViewModel>()
 
     override fun setTitle(): String = "注册"
 
@@ -52,16 +53,16 @@ class RegistActivity : BaseToolbarActivity() {
             showDialog { dialog ->
                 vm.userRegister(getPhone, EncryptUtils.encryptMD5ToString(getPwd)).observe(this, Observer {
                     when (it.status) {
-                        NetStatus.LOAD -> TODO()
-                        NetStatus.SUCCESS -> {
+                        Status.LOAD -> TODO()
+                        Status.SUCCESS -> {
                             dialog.dismiss()
                             finish()
                         }
-                        NetStatus.ERROR -> {
+                        Status.ERROR -> {
                             dialog.dismiss()
-                            ToastUtils.showShort(it.msg)
+                            ToastUtils.showShort(it.message)
                         }
-                        NetStatus.EMPTY -> TODO()
+                        Status.EMPTY -> TODO()
                     }
                 })
             }

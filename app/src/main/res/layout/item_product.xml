@@ -251,7 +251,7 @@
                 </LinearLayout>
             </LinearLayout>
 
-            <com.aib.lib.base.widget.RoundProgress
+            <com.aib.widget.RoundProgress
                 android:id="@+id/p_progresss"
                 android:layout_width="50dp"
                 android:layout_height="50dp"

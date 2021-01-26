@@ -3,11 +3,12 @@ package com.aib.activity
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.ActivityInfo
-import com.aib.lib.base.activity.BaseToolbarActivity
-import com.aib.lib.base.arouter.ArouterPath
-import com.aib.lib.base.image.GifSizeFilter
-import com.aib.lib.base.image.GlideManager.Companion.getInstance
-import com.aib.lib.base.sp.SpKeyConstant
+import androidx.databinding.ViewDataBinding
+import com.aib.base.activity.BaseToolbarActivity
+import com.aib.sdk.arouter.ArouterPath
+import com.aib.utils.GifSizeFilter
+import com.aib.utils.GlideManager.Companion.getInstance
+import com.aib.sdk.sp.SpKeyConstant
 import com.aib.p2p.R
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.LogUtils
@@ -20,7 +21,7 @@ import com.zhihu.matisse.filter.Filter
 import kotlinx.android.synthetic.main.activity_user_info.*
 
 
-class UserInfoActivity : BaseToolbarActivity() {
+class UserInfoActivity : BaseToolbarActivity<ViewDataBinding>() {
     private val TAG = javaClass.simpleName
     private val REQUEST_CODE_CHOOSE = 0
 

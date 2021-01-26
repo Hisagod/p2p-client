@@ -1,6 +1,5 @@
 package com.aib.sdk.arouter
 
-import com.aib.lib.base.arouter.ArouterPath
 import com.alibaba.android.arouter.launcher.ARouter
 
 class ArouterManager private constructor() {

@@ -3,21 +3,21 @@ package com.aib.activity
 import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.SharedPreferences
-import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
+import androidx.databinding.ViewDataBinding
 import cn.sharesdk.onekeyshare.OnekeyShare
-import com.aib.lib.base.activity.BaseToolbarActivity
+import com.aib.base.activity.BaseToolbarActivity
 import com.aib.p2p.R
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.PhoneUtils
 import com.mob.MobSDK
 import kotlinx.android.synthetic.main.activity_settings.*
 
-class SettingsActivity : BaseToolbarActivity() {
+class SettingsActivity : BaseToolbarActivity<ViewDataBinding>() {
 
     override fun setTitle(): String {
         return "设置中心"

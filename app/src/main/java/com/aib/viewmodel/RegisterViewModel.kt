@@ -2,8 +2,8 @@ package com.aib.viewmodel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.aib.lib.base.net.Resource
-import com.aib.lib.base.net.convert
+import com.aib.net.Resource
+import com.aib.net.convert
 import kotlinx.coroutines.launch
 
 class RegisterViewModel : BaseViewModel() {
@@ -14,7 +14,7 @@ class RegisterViewModel : BaseViewModel() {
                 val bean = api.register(phone, pwd).convert()
                 data.value = Resource.success(bean)
             }.onFailure {
-                data.value = Resource.error(it.message ?: "获取数据失败")
+                data.value = Resource.error(it.message ?: "获取数据失败", null)
             }
         }
         return data

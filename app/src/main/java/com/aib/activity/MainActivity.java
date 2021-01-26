@@ -2,13 +2,14 @@ package com.aib.activity;
 
 import androidx.annotation.NonNull;
 
+import com.aib.base.activity.BaseActivity;
 import com.aib.fragment.ProductFragment;
-import com.aib.lib.base.activity.BaseActivity;
-import com.aib.lib.base.arouter.ArouterPath;
+import com.aib.sdk.arouter.ArouterPath;
 import com.aib.p2p.R;
 import com.alibaba.android.arouter.facade.annotation.Route;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -21,8 +22,11 @@ import com.aib.fragment.HomeFragment;
 import java.util.ArrayList;
 import java.util.List;
 
+import dagger.hilt.android.AndroidEntryPoint;
+
 @Route(path = ArouterPath.PATH_MAIN)
-public class MainActivity extends BaseActivity {
+@AndroidEntryPoint
+public class MainActivity extends BaseActivity<ViewDataBinding> {
     private List<Fragment> fragmentList = new ArrayList<>();
 
     private void switchFragment(int position) {

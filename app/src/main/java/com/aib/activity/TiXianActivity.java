@@ -8,13 +8,15 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import com.aib.lib.base.activity.BaseToolbarActivity;
+import androidx.databinding.ViewDataBinding;
+
+import com.aib.base.activity.BaseToolbarActivity;
 import com.aib.p2p.R;
 import com.blankj.utilcode.util.ToastUtils;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TiXianActivity extends BaseToolbarActivity {
+public class TiXianActivity extends BaseToolbarActivity<ViewDataBinding> {
     EditText etInputMoney;
     Button btnTixian;
 

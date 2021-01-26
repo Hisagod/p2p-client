@@ -3,7 +3,7 @@ package com.aib.activity
 import android.os.CountDownTimer
 import androidx.activity.viewModels
 import com.aib.base.activity.BaseActivity
-import com.aib.lib.base.arouter.ArouterPath
+import com.aib.sdk.arouter.ArouterPath
 import com.aib.p2p.R
 import com.aib.p2p.databinding.ActivitySplashBinding
 import com.aib.sdk.arouter.ArouterManager

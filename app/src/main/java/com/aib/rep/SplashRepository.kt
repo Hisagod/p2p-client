@@ -1,6 +1,6 @@
 package com.aib.rep
 
-import com.aib.lib.base.net.ApiService
+import com.aib.net.ApiService
 import com.blankj.utilcode.util.LogUtils
 import javax.inject.Inject
 

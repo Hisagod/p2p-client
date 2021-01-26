@@ -6,26 +6,23 @@ import android.text.Editable;
 import android.text.TextUtils;
 import android.text.TextWatcher;
 import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
-import com.aib.lib.base.activity.BaseToolbarActivity;
+import androidx.databinding.ViewDataBinding;
+
+import com.aib.base.activity.BaseToolbarActivity;
 import com.aib.p2p.R;
-import com.alipay.sdk.app.PayTask;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.io.UnsupportedEncodingException;
-import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 import java.util.Random;
 
 
-public class ChongZhiActivity extends BaseToolbarActivity {
+public class ChongZhiActivity extends BaseToolbarActivity<ViewDataBinding> {
 
     //支付的信息
     private static final int SDK_PAY_FLAG = 1;

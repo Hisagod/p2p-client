@@ -10,8 +10,8 @@ import com.alibaba.android.arouter.launcher.ARouter
 abstract class BaseActivity<D : ViewDataBinding> : AppCompatActivity(), IPage {
     lateinit var binding: D
     override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
         ARouter.getInstance().inject(this)
+        super.onCreate(savedInstanceState)
 
         binding = DataBindingUtil.setContentView(this, getLayoutId())
 
