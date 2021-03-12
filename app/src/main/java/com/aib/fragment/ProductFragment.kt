@@ -1,20 +1,25 @@
 package com.aib.fragment
 
 import androidx.databinding.ViewDataBinding
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Observer
-import com.aib.base.fragment.BaseFragment
+import com.aib.base.fragment.BaseLazyFragment
 import com.aib.bean.ProductBean
 import com.aib.net.Status
-import com.aib.widget.RoundProgress
 import com.aib.p2p.R
+import com.aib.sdk.arouter.ArouterPath
 import com.aib.viewmodel.MainViewModel
+import com.aib.widget.RoundProgress
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.fragment_productlist.*
 
-class ProductFragment : BaseFragment<ViewDataBinding>() {
-    private val vm by viewModels<MainViewModel>()
+@AndroidEntryPoint
+@Route(path = ArouterPath.PATH_PRODUCT_PAGE)
+class ProductFragment : BaseLazyFragment<ViewDataBinding>() {
+    private val vm by activityViewModels<MainViewModel>()
     private lateinit var adapter: BaseQuickAdapter<ProductBean, BaseViewHolder>
     override fun getLayoutId(): Int {
         return R.layout.fragment_productlist
@@ -41,17 +46,16 @@ class ProductFragment : BaseFragment<ViewDataBinding>() {
     private fun loadData() {
         vm.getProductList().observe(this, Observer {
             when (it.status) {
-                Status.LOAD -> dv.showLoad()
+                Status.LOAD -> {
+                }
                 Status.SUCCESS -> {
-                    dv.showSuccess()
                     adapter.setNewInstance(it.data as MutableList<ProductBean>?)
                 }
                 Status.ERROR -> {
-                    dv.showError {
-                        loadData()
-                    }
+
                 }
-                Status.EMPTY -> dv.showEmpty()
+                Status.EMPTY -> {
+                }
             }
         })
     }

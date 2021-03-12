@@ -5,17 +5,19 @@ import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.aib.base.activity.BaseToolbarActivity
-import com.aib.sdk.arouter.ArouterPath
 import com.aib.expand.showDialog
 import com.aib.net.Status
 import com.aib.p2p.R
+import com.aib.sdk.arouter.ArouterPath
 import com.aib.viewmodel.RegisterViewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.EncryptUtils
 import com.blankj.utilcode.util.RegexUtils
 import com.blankj.utilcode.util.ToastUtils
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_user_regist.*
 
+@AndroidEntryPoint
 @Route(path = ArouterPath.PATH_REGISTER)
 class RegistActivity : BaseToolbarActivity<ViewDataBinding>() {
     private val vm by viewModels<RegisterViewModel>()

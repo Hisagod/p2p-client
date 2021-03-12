@@ -16,8 +16,8 @@
 
 package com.aib.binding
 
-import androidx.databinding.BindingAdapter
 import android.view.View
+import androidx.databinding.BindingAdapter
 
 /**
  * Data Binding adapters specific to the app.

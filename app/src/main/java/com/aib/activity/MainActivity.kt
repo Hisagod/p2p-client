@@ -1,83 +1,67 @@
-package com.aib.activity;
+package com.aib.activity
 
-import androidx.annotation.NonNull;
-
-import com.aib.base.activity.BaseActivity;
-import com.aib.fragment.ProductFragment;
-import com.aib.sdk.arouter.ArouterPath;
-import com.aib.p2p.R;
-import com.alibaba.android.arouter.facade.annotation.Route;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
-
-import androidx.databinding.ViewDataBinding;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.view.MenuItem;
-
-import com.aib.fragment.CenterFragment;
-import com.aib.fragment.HomeFragment;
-
-
-import java.util.ArrayList;
-import java.util.List;
-
-import dagger.hilt.android.AndroidEntryPoint;
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.aib.base.activity.BaseActivity
+import com.aib.p2p.R
+import com.aib.p2p.databinding.ActivityMainBinding
+import com.aib.sdk.arouter.ArouterManager
+import com.aib.sdk.arouter.ArouterPath
+import com.alibaba.android.arouter.facade.annotation.Route
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+import javax.inject.Inject
 
 @Route(path = ArouterPath.PATH_MAIN)
 @AndroidEntryPoint
-public class MainActivity extends BaseActivity<ViewDataBinding> {
-    private List<Fragment> fragmentList = new ArrayList<>();
+class MainActivity : BaseActivity<ActivityMainBinding>() {
+    @Inject
+    lateinit var manager: ArouterManager
 
-    private void switchFragment(int position) {
-        FragmentTransaction ft = getSupportFragmentManager().beginTransaction();
-        for (int i = 0; i < fragmentList.size(); i++) {
-            Fragment fragment = fragmentList.get(i);
-            if (position == i) {
-                if (fragment.isAdded()) {
-                    ft.show(fragment);
-                } else {
-                    ft.add(R.id.fl, fragment);
-                }
-            } else {
-                if (fragment.isAdded()) {
-                    ft.hide(fragment);
+    override fun getLayoutId(): Int = R.layout.activity_main
+
+    override fun initData() {
+
+        binding.vp.apply {
+            isUserInputEnabled = false
+            offscreenPageLimit = 3
+            adapter = object : FragmentStateAdapter(this@MainActivity) {
+                override fun getItemCount(): Int = 3
+
+                override fun createFragment(position: Int): Fragment {
+                    return when (position) {
+                        0 -> {
+                            manager.openHomePage()
+                        }
+                        1 -> {
+                            manager.openProductPage()
+                        }
+                        2 -> {
+                            manager.openMinePage()
+                        }
+                        else -> manager.openHomePage()
+                    }
                 }
             }
         }
-        ft.commit();
-    }
 
-    @Override
-    public int getLayoutId() {
-        return R.layout.activity_main;
-    }
-
-    @Override
-    public void initData() {
-        fragmentList.add(new HomeFragment());
-        fragmentList.add(new ProductFragment());
-        fragmentList.add(new CenterFragment());
-
-        BottomNavigationView bnv = findViewById(R.id.bnv);
-        bnv.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
-                switch (menuItem.getItemId()) {
-                    case R.id.btn_home:
-                        switchFragment(0);
-                        return true;
-                    case R.id.btn_invest:
-                        switchFragment(1);
-                        return true;
-                    case R.id.btn_assets:
-                        switchFragment(2);
-                        return true;
+        binding.bnv.setOnNavigationItemSelectedListener(BottomNavigationView.OnNavigationItemSelectedListener { menuItem ->
+            when (menuItem.itemId) {
+                R.id.btn_home -> {
+                    binding.vp.setCurrentItem(0, false)
+                    return@OnNavigationItemSelectedListener true
                 }
-                return false;
+                R.id.btn_invest -> {
+                    binding.vp.setCurrentItem(1, false)
+                    return@OnNavigationItemSelectedListener true
+                }
+                R.id.btn_assets -> {
+                    binding.vp.setCurrentItem(2, false)
+                    return@OnNavigationItemSelectedListener true
+                }
             }
-        });
-
-        switchFragment(0);
+            false
+        })
     }
 }

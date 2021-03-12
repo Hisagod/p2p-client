@@ -3,8 +3,8 @@ package com.aib.adapter
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import com.aib.bean.HomeBean
-import com.aib.utils.GlideManager
 import com.aib.p2p.databinding.ItemBannerBinding
+import com.aib.utils.GlideManager
 import com.chad.library.adapter.base.binder.QuickDataBindingItemBinder
 import com.youth.banner.adapter.BannerImageAdapter
 import com.youth.banner.holder.BannerImageHolder

@@ -1,26 +1,28 @@
 package com.aib.fragment
 
-import androidx.fragment.app.viewModels
+import androidx.fragment.app.activityViewModels
 import com.aib.adapter.RecommonAdapter
-import com.aib.base.fragment.BaseFragment
+import com.aib.base.fragment.BaseLazyFragment
 import com.aib.bean.HomeBean
 import com.aib.net.Status
 import com.aib.p2p.R
 import com.aib.p2p.databinding.FragmentHomeBinding
+import com.aib.sdk.arouter.ArouterPath
 import com.aib.viewmodel.MainViewModel
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseBinderAdapter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_home.*
 
 @AndroidEntryPoint
-class HomeFragment : BaseFragment<FragmentHomeBinding>() {
-    private val vm by viewModels<MainViewModel>()
+@Route(path = ArouterPath.PATH_HOME_PAGE)
+class HomeFragment : BaseLazyFragment<FragmentHomeBinding>() {
+    private val vm by activityViewModels<MainViewModel>()
     private val homeAdapter = BaseBinderAdapter()
 
     override fun getLayoutId(): Int = R.layout.fragment_home
 
     override fun initData() {
-        rv.adapter = homeAdapter
+        binding.rv.adapter = homeAdapter
         homeAdapter.addItemBinder(HomeBean::class.java, com.aib.adapter.BannerAdapter())
         homeAdapter.addItemBinder(HomeBean.ProductBean::class.java, RecommonAdapter())
         loadData()
@@ -28,7 +30,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
     }
 
     private fun refresh() {
-        srl.setOnRefreshListener {
+        binding.srl.setOnRefreshListener {
             loadData()
         }
     }
@@ -44,6 +46,7 @@ class HomeFragment : BaseFragment<FragmentHomeBinding>() {
                 }
                 homeAdapter.setList(dataItem)
             }
+            binding.srl.finishRefresh()
         }
         vm.getHome()
     }

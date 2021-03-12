@@ -4,18 +4,19 @@ import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.aib.base.activity.BaseToolbarActivity
-import com.aib.sdk.arouter.ArouterPath
 import com.aib.bean.UserBean
-import com.aib.sdk.event.EventCode
-import com.aib.sdk.event.EventData
 import com.aib.expand.showDialog
 import com.aib.net.Status
-import com.aib.sdk.sp.SpKeyConstant
 import com.aib.p2p.R
+import com.aib.sdk.arouter.ArouterPath
+import com.aib.sdk.event.EventCode
+import com.aib.sdk.event.EventData
+import com.aib.sdk.sp.SpKeyConstant
 import com.aib.viewmodel.LoginViewModel
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 import org.greenrobot.eventbus.EventBus
 
@@ -23,6 +24,7 @@ import org.greenrobot.eventbus.EventBus
  * 登录
  */
 @Route(path = ArouterPath.PATH_LOGIN)
+@AndroidEntryPoint
 class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
     private val vm by viewModels<LoginViewModel>()
 

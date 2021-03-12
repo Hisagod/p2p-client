@@ -8,15 +8,20 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
-import androidx.databinding.ViewDataBinding;
-
 import com.aib.base.activity.BaseToolbarActivity;
 import com.aib.p2p.R;
+import com.aib.p2p.databinding.ActivityTiXianBinding;
+import com.aib.sdk.arouter.ArouterPath;
+import com.alibaba.android.arouter.facade.annotation.Route;
 import com.blankj.utilcode.util.ToastUtils;
 
 import org.jetbrains.annotations.NotNull;
 
-public class TiXianActivity extends BaseToolbarActivity<ViewDataBinding> {
+import dagger.hilt.android.AndroidEntryPoint;
+
+@AndroidEntryPoint
+@Route(path = ArouterPath.PATH_WITHDRAW)
+public class TiXianActivity extends BaseToolbarActivity<ActivityTiXianBinding> {
     EditText etInputMoney;
     Button btnTixian;
 

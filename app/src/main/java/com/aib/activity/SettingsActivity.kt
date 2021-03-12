@@ -2,22 +2,29 @@ package com.aib.activity
 
 import android.annotation.SuppressLint
 import android.content.DialogInterface
-import android.content.SharedPreferences
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.appcompat.app.AlertDialog
-import androidx.databinding.ViewDataBinding
 import cn.sharesdk.onekeyshare.OnekeyShare
 import com.aib.base.activity.BaseToolbarActivity
 import com.aib.p2p.R
-import com.blankj.utilcode.util.ActivityUtils
+import com.aib.p2p.databinding.ActivitySettingsBinding
+import com.aib.sdk.arouter.ArouterManager
+import com.aib.sdk.arouter.ArouterPath
+import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.PhoneUtils
 import com.mob.MobSDK
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_settings.*
+import javax.inject.Inject
 
-class SettingsActivity : BaseToolbarActivity<ViewDataBinding>() {
+@AndroidEntryPoint
+@Route(path = ArouterPath.PATH_SETTINGS)
+class SettingsActivity : BaseToolbarActivity<ActivitySettingsBinding>() {
+    @Inject
+    lateinit var manager: ArouterManager
 
     override fun setTitle(): String {
         return "设置中心"
@@ -26,20 +33,14 @@ class SettingsActivity : BaseToolbarActivity<ViewDataBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_settings
 
     override fun initData() {
-
-        //联系客服
-        contactService()
+        binding.view = this
 
         //提交反馈意见
         commitFanKui()
 
         //分享
         share()
-
-        about()
     }
-
-    private var sp: SharedPreferences? = null
 
     private fun share() {
         tv_more_share.setOnClickListener {
@@ -112,31 +113,19 @@ class SettingsActivity : BaseToolbarActivity<ViewDataBinding>() {
         })
     }
 
-    private fun contactService() {
-        tv_customer.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                AlertDialog.Builder(this@SettingsActivity)
-                        .setTitle("联系客服")
-                        .setMessage("联系客服：1536006XXXX")
-                        .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-                            @SuppressLint("MissingPermission")
-                            override fun onClick(dialog: DialogInterface, which: Int) {
-                                val phone = tv_customer.getText().toString().trim({ it <= ' ' })
-                                PhoneUtils.call(phone)
-                            }
-                        })
-                        .setNegativeButton("取消", null)
-                        .show()
-            }
-        })
-    }
-
-
-    /**
-     * 注册
-     */
-    fun register() {
-        ActivityUtils.startActivity(RegistActivity::class.java)
+    fun contactService() {
+        AlertDialog.Builder(this@SettingsActivity)
+                .setTitle("联系客服")
+                .setMessage("联系客服：1536006XXXX")
+                .setPositiveButton("确定", object : DialogInterface.OnClickListener {
+                    @SuppressLint("MissingPermission")
+                    override fun onClick(dialog: DialogInterface, which: Int) {
+                        val phone = tv_customer.getText().toString().trim({ it <= ' ' })
+                        PhoneUtils.call(phone)
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .show()
     }
 
 
@@ -144,8 +133,6 @@ class SettingsActivity : BaseToolbarActivity<ViewDataBinding>() {
      * 关于
      */
     fun about() {
-        tv_about.setOnClickListener {
-            ActivityUtils.startActivity(AboutActivity::class.java)
-        }
+        manager.openAboutUs()
     }
 }

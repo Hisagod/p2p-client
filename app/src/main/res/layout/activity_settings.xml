@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <data>
+
+        <variable
+            name="view"
+            type="com.aib.activity.SettingsActivity" />
+    </data>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -24,6 +31,7 @@
                     android:drawableLeft="@drawable/icon_more_contact"
                     android:drawablePadding="20dp"
                     android:gravity="center_vertical"
+                    android:onClick="@{()->view.contactService()}"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="联系客服"
@@ -81,6 +89,7 @@
                     android:drawableLeft="@drawable/icon_more_about"
                     android:drawablePadding="20dp"
                     android:gravity="center_vertical"
+                    android:onClick="@{()->view.about()}"
                     android:paddingLeft="20dp"
                     android:paddingRight="20dp"
                     android:text="关于"

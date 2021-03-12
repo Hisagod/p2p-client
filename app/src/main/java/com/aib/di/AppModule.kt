@@ -1,9 +1,12 @@
-package com.aib.net
+package com.aib.di
 
+import com.aib.net.ApiService
+import com.aib.net.NetConstants
+import com.aib.sdk.arouter.ArouterManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ApplicationComponent
+import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
@@ -11,7 +14,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ApplicationComponent::class)
+@InstallIn(SingletonComponent::class)
 object Api {
     private val client = {
         OkHttpClient.Builder()
@@ -30,4 +33,11 @@ object Api {
                 .build()
                 .create(ApiService::class.java)
     }
+
+    /**
+     * 获取Arouter管理器
+     */
+    @Singleton
+    @Provides
+    fun getArouterManager(): ArouterManager = ArouterManager()
 }

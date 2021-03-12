@@ -3,7 +3,6 @@ package com.aib
 import android.app.Application
 import android.content.Context
 import android.os.Handler
-import com.aib.other.DefaultPage
 import com.aib.p2p.R
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.AppUtils
@@ -22,7 +21,6 @@ class P2pApplication : Application() {
 
         initArouter()
         initUtils()
-        initDefaultPage()
     }
 
     private fun initArouter() {
@@ -35,14 +33,6 @@ class P2pApplication : Application() {
 
     private fun initUtils() {
         Utils.init(this)
-    }
-
-    private fun initDefaultPage() {
-        DefaultPage.Builder()
-                .empty(R.layout.page_empty)
-                .load(R.layout.page_loading)
-                .error(R.layout.page_error)
-                .build()
     }
 
     companion object {

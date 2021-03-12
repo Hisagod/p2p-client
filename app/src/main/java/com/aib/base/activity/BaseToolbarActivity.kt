@@ -23,5 +23,9 @@ abstract class BaseToolbarActivity<D : ViewDataBinding> : AppCompatActivity(), I
         setTitle()
 
         initData()
+
+        rootBinding.ivBack.setOnClickListener {
+            finish()
+        }
     }
 }
