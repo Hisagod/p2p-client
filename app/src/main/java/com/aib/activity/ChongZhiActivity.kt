@@ -22,25 +22,6 @@ class ChongZhiActivity : BaseToolbarActivity<ActivityChongZhiBinding>() {
     }
 
     override fun initData() {
-        //默认情况下，button是不可操作的
-        binding.btnChongzhi.isClickable = false
-        binding.etChongzhi.addTextChangedListener(object : TextWatcher {
-            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
-            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {}
-            override fun afterTextChanged(s: Editable) {
-                val money = binding.etChongzhi.text.toString().trim { it <= ' ' }
-                if (TextUtils.isEmpty(money)) {
-                    //设置button为不可操作的
-                    binding.btnChongzhi.isClickable = false
-                    //设置背景颜色
-                    binding.btnChongzhi.setBackgroundResource(R.drawable.btn_02)
-                } else {
-                    //设置button为可操作的
-                    binding.btnChongzhi.isClickable = true
-                    //设置背景颜色
-                    binding.btnChongzhi.setBackgroundResource(R.drawable.btn_01)
-                }
-            }
-        })
+
     }
 }

@@ -10,8 +10,12 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name="com.aib.activity.SettingsActivity" />
-        <activity android:name="com.aib.activity.SplashActivity">
+        <activity
+            android:name="com.aib.activity.SettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.activity.SplashActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,15 +25,24 @@
         <activity
             android:name="com.aib.activity.MainActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.aib.activity.LoginActivity" />
+        <activity
+            android:name="com.aib.activity.LoginActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name="com.aib.activity.RegistActivity"
             android:launchMode="singleTask" />
-        <activity android:name="com.aib.activity.AboutActivity" />
-
-        <activity android:name="com.aib.activity.UserInfoActivity" />
-        <activity android:name="com.aib.activity.ChongZhiActivity" />
-        <activity android:name="com.aib.activity.TiXianActivity" />
+        <activity
+            android:name="com.aib.activity.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.activity.UserInfoActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.activity.ChongZhiActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.aib.activity.TiXianActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>

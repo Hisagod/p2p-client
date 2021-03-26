@@ -50,7 +50,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
             }
 
             override fun onDenied(permissionsDeniedForever: List<String>, permissionsDenied: List<String>) {
-                finish()
+
             }
         }).request()
     }

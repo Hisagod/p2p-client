@@ -14,33 +14,19 @@ class P2pApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        context = this.applicationContext
-        handler = Handler()
-        mainThread = Thread.currentThread()//实例化当前Application的线程即为主线程
-        mainThreadId = android.os.Process.myTid()//获取当前线程的id
-
         initArouter()
         initUtils()
     }
 
     private fun initArouter() {
-        if (AppUtils.isAppDebug()) {           // 这两行必须写在init之前，否则这些配置在init过程中将无效
-            ARouter.openLog();     // 打印日志
-            ARouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        if (AppUtils.isAppDebug()) {
+            ARouter.openLog()
+            ARouter.openDebug()
         }
-        ARouter.init(this); // 尽可能早，推荐在Application中初始化
+        ARouter.init(this)
     }
 
     private fun initUtils() {
         Utils.init(this)
-    }
-
-    companion object {
-
-        //在整个应用执行过程中，需要提供的变量
-        lateinit var context: Context//需要使用的上下文对象：application实例
-        lateinit var handler: Handler//需要使用的handler
-        lateinit var mainThread: Thread//提供主线程对象
-        var mainThreadId: Int = 0//提供主线程对象的id
     }
 }
