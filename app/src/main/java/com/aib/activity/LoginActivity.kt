@@ -8,17 +8,21 @@ import com.aib.bean.UserBean
 import com.aib.expand.showDialog
 import com.aib.net.Status
 import com.aib.p2p.R
+import com.aib.sdk.arouter.ArouterKey
+import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.aib.sdk.event.EventCode
 import com.aib.sdk.event.EventData
 import com.aib.sdk.sp.SpKeyConstant
 import com.aib.viewmodel.LoginViewModel
+import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_login.*
 import org.greenrobot.eventbus.EventBus
+import javax.inject.Inject
 
 /**
  * 登录
@@ -26,15 +30,19 @@ import org.greenrobot.eventbus.EventBus
 @Route(path = ArouterPath.PATH_LOGIN)
 @AndroidEntryPoint
 class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
+
+    @JvmField
+    @Autowired(name = ArouterKey.KEY_PATH)
+    var path: String? = null
+
+    @Inject
+    lateinit var arouter: ArouterManager
+
     private val vm by viewModels<LoginViewModel>()
 
-    override fun setTitle(): String {
-        return "登录"
-    }
+    override fun setTitle(): String = "登录"
 
-    override fun getLayoutId(): Int {
-        return R.layout.activity_login
-    }
+    override fun getLayoutId(): Int = R.layout.activity_login
 
     override fun initData() {
         login()
@@ -75,9 +83,11 @@ class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
                     when (it.status) {
                         Status.LOAD -> TODO()
                         Status.SUCCESS -> {
-                            saveData(it.data!!)
                             dialog.dismiss()
                             EventBus.getDefault().postSticky(EventData(EventCode.CODE_UPDATE_USER, null))
+                            path?.let { nextPath ->
+                                arouter.openNext(nextPath)
+                            }
                             finish()
                         }
                         Status.ERROR -> {
@@ -89,11 +99,5 @@ class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
                 })
             }
         }
-    }
-
-    private fun saveData(it: UserBean) {
-        SPStaticUtils.put(SpKeyConstant.KEY_INT_USER_ID, it.id)
-        SPStaticUtils.put(SpKeyConstant.KEY_STRING_USER_AVATAR, it.avatar)
-        SPStaticUtils.put(SpKeyConstant.KEY_STRING_USER_NAME, it.name)
     }
 }

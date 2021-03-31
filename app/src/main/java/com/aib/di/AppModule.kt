@@ -1,11 +1,14 @@
 package com.aib.di
 
+import android.content.Context
 import com.aib.net.ApiService
 import com.aib.net.NetConstants
 import com.aib.sdk.arouter.ArouterManager
+import com.aib.sdk.sp.SpManager
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -34,10 +37,13 @@ object Api {
                 .create(ApiService::class.java)
     }
 
-    /**
-     * 获取Arouter管理器
-     */
+    //Arouter管理器
     @Singleton
     @Provides
-    fun getArouterManager(): ArouterManager = ArouterManager()
+    fun getArouterManager(@ApplicationContext ctx: Context): ArouterManager = ArouterManager(ctx)
+
+    //K-V模式SP对象
+    @Singleton
+    @Provides
+    fun getSpManager(): SpManager = SpManager()
 }

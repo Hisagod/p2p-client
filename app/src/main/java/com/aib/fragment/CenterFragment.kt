@@ -3,19 +3,16 @@ package com.aib.fragment
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.aib.activity.ChongZhiActivity
-import com.aib.activity.SettingsActivity
 import com.aib.activity.TiXianActivity
-import com.aib.activity.UserInfoActivity
 import com.aib.base.fragment.BaseLazyFragment
 import com.aib.p2p.R
+import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.aib.sdk.event.EventCode
 import com.aib.sdk.event.EventData
 import com.aib.sdk.sp.SpKeyConstant
 import com.aib.utils.GlideManager
-import com.aib.utils.UserUtils
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPStaticUtils
 import dagger.hilt.android.AndroidEntryPoint
@@ -23,10 +20,13 @@ import kotlinx.android.synthetic.main.fragment_center.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
+import javax.inject.Inject
 
 @AndroidEntryPoint
 @Route(path = ArouterPath.PATH_MINE_PAGE)
 class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
+    @Inject
+    lateinit var arouter: ArouterManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -56,11 +56,7 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
 
     private fun openAvatar() {
         iv_avatar.setOnClickListener {
-            if (UserUtils.isLogin()) {
-                ActivityUtils.startActivity(UserInfoActivity::class.java)
-            } else {
-                ARouter.getInstance().build(ArouterPath.PATH_LOGIN).navigation()
-            }
+            arouter.openNext(ArouterPath.PATH_USER_INFO)
         }
     }
 
@@ -79,11 +75,7 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
      */
     private fun enterUserCenter() {
         rl_me.setOnClickListener {
-            if (UserUtils.isLogin()) {
-                ActivityUtils.startActivity(UserInfoActivity::class.java)
-            } else {
-                ARouter.getInstance().build(ArouterPath.PATH_LOGIN).navigation()
-            }
+            arouter.openNext(ArouterPath.PATH_USER_INFO)
         }
     }
 
@@ -107,7 +99,7 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
 
     private fun openSettings() {
         iv_settings.setOnClickListener {
-            ActivityUtils.startActivity(SettingsActivity::class.java)
+            arouter.openNext(ArouterPath.PATH_SETTINGS)
         }
     }
 }

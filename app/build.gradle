@@ -18,7 +18,7 @@ android {
 
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
@@ -143,4 +143,10 @@ dependencies {
 
     //https://github.com/zhihu/Matisse
     implementation 'com.zhihu.android:matisse:0.5.3-beta3'
+
+    //https://github.com/Tencent/MMKV/blob/master/README_CN.md
+    implementation 'com.tencent:mmkv-static:1.2.7'
+
+    //https://github.com/li-xiaojun/XPopup
+    implementation 'com.lxj:xpopup:2.2.23'
 }

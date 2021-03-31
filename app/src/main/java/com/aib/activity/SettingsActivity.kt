@@ -15,6 +15,7 @@ import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.PhoneUtils
+import com.lxj.xpopup.XPopup
 import com.mob.MobSDK
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_settings.*
@@ -24,11 +25,9 @@ import javax.inject.Inject
 @Route(path = ArouterPath.PATH_SETTINGS)
 class SettingsActivity : BaseToolbarActivity<ActivitySettingsBinding>() {
     @Inject
-    lateinit var manager: ArouterManager
+    lateinit var arouter: ArouterManager
 
-    override fun setTitle(): String {
-        return "设置中心"
-    }
+    override fun setTitle(): String = "设置中心"
 
     override fun getLayoutId(): Int = R.layout.activity_settings
 
@@ -80,59 +79,24 @@ class SettingsActivity : BaseToolbarActivity<ActivitySettingsBinding>() {
                         department = rb.getText().toString()
                     }
                 })
-
-//                AlertDialog.Builder(this@SettingsActivity)
-//                        .setView(view)
-//                        .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-//                            override fun onClick(dialog: DialogInterface, which: Int) {
-//                                //获取反馈的信息
-//                                val content = et_fankui_content.getText().toString()
-//                                //联网发送反馈信息
-//                                val client = AsyncHttpClient()
-//                                val url = AppNetConfig.FEEDBACK
-//                                val params = RequestParams()
-//                                params.put("department", department)
-//                                params.put("content", content)
-//                                client.post(url, params, object : AsyncHttpResponseHandler() {
-//                                    override fun onSuccess(content: String?) {
-//                                        UIUtils.toast("发送反馈信息成功", false)
-//
-//                                    }
-//
-//                                    override fun onFailure(error: Throwable, content: String?) {
-//                                        UIUtils.toast("发送反馈信息失败", false)
-//
-//                                    }
-//                                })
-//                            }
-//                        })
-//                        .setNegativeButton("取消", null)
-//                        .show()
-
             }
         })
     }
 
+    //联系客服
     fun contactService() {
-        AlertDialog.Builder(this@SettingsActivity)
-                .setTitle("联系客服")
-                .setMessage("联系客服：1536006XXXX")
-                .setPositiveButton("确定", object : DialogInterface.OnClickListener {
-                    @SuppressLint("MissingPermission")
-                    override fun onClick(dialog: DialogInterface, which: Int) {
-                        val phone = tv_customer.getText().toString().trim({ it <= ' ' })
-                        PhoneUtils.call(phone)
-                    }
-                })
-                .setNegativeButton("取消", null)
-                .show()
-    }
+        XPopup.Builder(this)
+                .asConfirm("联系客服", "联系客服：1536006XXXX", {
+//                    PhoneUtils.call(phone)
+                }, {
 
+                }).show()
+    }
 
     /**
      * 关于
      */
     fun about() {
-        manager.openAboutUs()
+        arouter.openNext(ArouterPath.PATH_ABOUT_US)
     }
 }

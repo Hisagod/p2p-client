@@ -9,7 +9,7 @@ class UserUtils {
          * 用户是否登录
          */
         fun isLogin(): Boolean {
-            val uid = SPStaticUtils.getInt(SpKeyConstant.KEY_INT_USER_ID, 0)
+            val uid = SPStaticUtils.getInt(SpKeyConstant.KEY_STRING_USER_ID, 0)
             return uid != 0
         }
     }

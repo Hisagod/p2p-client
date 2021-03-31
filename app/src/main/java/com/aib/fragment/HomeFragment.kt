@@ -1,6 +1,7 @@
 package com.aib.fragment
 
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.observe
 import com.aib.adapter.RecommonAdapter
 import com.aib.base.fragment.BaseLazyFragment
 import com.aib.bean.HomeBean

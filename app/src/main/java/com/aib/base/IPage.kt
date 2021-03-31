@@ -11,4 +11,7 @@ interface IPage {
 
     //设置标题
     fun setTitle(): String = AppUtils.getAppName()
+
+    //打印打开的页面名字
+    fun logPageName()
 }

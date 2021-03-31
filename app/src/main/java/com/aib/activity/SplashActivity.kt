@@ -21,11 +21,11 @@ import javax.inject.Inject
 @Route(path = ArouterPath.PATH_SPLASH)
 class SplashActivity : BaseActivity<ActivitySplashBinding>() {
     @Inject
-    lateinit var manager: ArouterManager
+    lateinit var arouter: ArouterManager
+
     private val vm by viewModels<SplashViewModel>()
 
     private val permissions = arrayOf(
-            PermissionConstants.PHONE,
             PermissionConstants.STORAGE
     )
 
@@ -43,7 +43,7 @@ class SplashActivity : BaseActivity<ActivitySplashBinding>() {
                 object : CountDownTimer(3000, 1000) {
                     override fun onTick(millisUntilFinished: Long) {}
                     override fun onFinish() {
-                        manager.openMainPage()
+                        arouter.openNext(ArouterPath.PATH_MAIN)
                         finish()
                     }
                 }.start()
