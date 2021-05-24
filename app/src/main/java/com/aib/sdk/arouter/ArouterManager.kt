@@ -8,7 +8,8 @@ import dagger.hilt.android.qualifiers.ActivityContext
 import javax.inject.Inject
 
 class ArouterManager @Inject constructor(
-        private val ctx: Context) {
+    private val ctx: Context
+) {
 
     fun openHomePage(): Fragment {
         return ARouter.getInstance().build(ArouterPath.PATH_HOME_PAGE).navigation() as Fragment
@@ -43,7 +44,8 @@ class ArouterManager @Inject constructor(
     }
 
     fun openNext(path: String, bundle: Bundle) {
-        ARouter.getInstance().build(path).with(bundle).navigation(ctx, LoginNavigationCallbackImpl())
+        ARouter.getInstance().build(path).with(bundle)
+            .navigation(ctx, LoginNavigationCallbackImpl())
     }
 
     fun openNext(path: String) {

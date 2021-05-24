@@ -18,6 +18,9 @@ package com.aib.binding
 
 import android.view.View
 import androidx.databinding.BindingAdapter
+import androidx.databinding.BindingMethod
+import androidx.databinding.BindingMethods
+import com.scwang.smart.refresh.layout.SmartRefreshLayout
 
 /**
  * Data Binding adapters specific to the app.

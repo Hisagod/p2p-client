@@ -15,22 +15,22 @@ import javax.inject.Inject
 
 @HiltViewModel
 class MainViewModel @Inject constructor(
-        private val mainRep: MainRepository
+    private val mainRep: MainRepository
 ) : ViewModel() {
 
-    val mainData = MutableLiveData<Resource<HomeBean>>()
+    val mainData = MutableLiveData<Resource<HomeBean>>(Resource.loading(null))
 
     /**
      * 获取Banner数据
      */
     fun getHome() {
-        mainData.value = Resource.loading(null)
+//        mainData.value = Resource.loading(null)
         viewModelScope.launch {
             runCatching {
                 val bean = mainRep.loadHomeDataFromNet().convert()
-                mainData.value = Resource.success(bean)
+//                mainData.value = Resource.success(bean)
             }.onFailure {
-                mainData.value = Resource.error(it.message ?: "加载失败", null)
+//                mainData.value = Resource.error(it.message ?: "加载失败", null)
             }
         }
     }

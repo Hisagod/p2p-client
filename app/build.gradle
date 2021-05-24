@@ -134,9 +134,9 @@ dependencies {
     implementation 'com.squareup.okhttp3:logging-interceptor:4.8.1'
 
     //https://github.com/scwang90/SmartRefreshLayout
-    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.1'
-    implementation 'com.scwang.smart:refresh-header-classics:2.0.1'
-    implementation 'com.scwang.smart:refresh-footer-classics:2.0.1'
+    implementation 'com.scwang.smart:refresh-layout-kernel:2.0.3'
+    implementation 'com.scwang.smart:refresh-header-classics:2.0.3'
+    implementation 'com.scwang.smart:refresh-footer-classics:2.0.3'
 
     //https://github.com/greenrobot/EventBus
     implementation 'org.greenrobot:eventbus:3.2.0'
