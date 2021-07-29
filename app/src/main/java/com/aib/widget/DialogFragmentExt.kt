@@ -1,4 +1,4 @@
-package com.aib.expand
+package com.aib.widget
 
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.DialogFragment

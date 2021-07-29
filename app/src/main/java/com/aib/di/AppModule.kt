@@ -23,6 +23,7 @@ object Api {
         OkHttpClient.Builder()
                 .addInterceptor(HttpLoggingInterceptor()
                         .setLevel(HttpLoggingInterceptor.Level.BODY))
+
                 .build()
     }
 

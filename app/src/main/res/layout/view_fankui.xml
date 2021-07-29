@@ -38,7 +38,6 @@
             >
 
             <RadioButton
-                android:id="@+id/cb_fankui_tech"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="技术部"
@@ -46,7 +45,6 @@
                 android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/cb_fankui_invest"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="理财部"
@@ -54,7 +52,6 @@
                 android:textSize="15sp" />
 
             <RadioButton
-                android:id="@+id/cb_fankui_zixun"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="咨询部"

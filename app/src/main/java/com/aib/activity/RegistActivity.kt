@@ -5,7 +5,7 @@ import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.aib.base.activity.BaseToolbarActivity
-import com.aib.expand.showDialog
+import com.aib.widget.showDialog
 import com.aib.net.Status
 import com.aib.p2p.R
 import com.aib.sdk.arouter.ArouterPath

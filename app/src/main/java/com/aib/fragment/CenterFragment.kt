@@ -2,8 +2,6 @@ package com.aib.fragment
 
 import android.os.Bundle
 import androidx.databinding.ViewDataBinding
-import com.aib.activity.ChongZhiActivity
-import com.aib.activity.TiXianActivity
 import com.aib.base.fragment.BaseLazyFragment
 import com.aib.p2p.R
 import com.aib.sdk.arouter.ArouterManager
@@ -40,8 +38,6 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
         openAvatar()
         loadPersonalInfo()
         enterUserCenter()
-        openRechange()
-        openWithdraw()
     }
 
     override fun onDestroy() {
@@ -76,24 +72,6 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
     private fun enterUserCenter() {
         rl_me.setOnClickListener {
             arouter.openNext(ArouterPath.PATH_USER_INFO)
-        }
-    }
-
-    /**
-     * 充值
-     */
-    private fun openRechange() {
-        recharge.setOnClickListener {
-            ActivityUtils.startActivity(ChongZhiActivity::class.java)
-        }
-    }
-
-    /**
-     * 提现
-     */
-    private fun openWithdraw() {
-        withdraw.setOnClickListener {
-            ActivityUtils.startActivity(TiXianActivity::class.java)
         }
     }
 

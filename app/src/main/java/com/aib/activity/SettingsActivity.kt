@@ -1,102 +1,102 @@
 package com.aib.activity
 
-import android.annotation.SuppressLint
-import android.content.DialogInterface
+import android.os.Bundle
 import android.view.View
 import android.widget.EditText
 import android.widget.RadioButton
 import android.widget.RadioGroup
-import androidx.appcompat.app.AlertDialog
-import cn.sharesdk.onekeyshare.OnekeyShare
+import androidx.activity.compose.setContent
+import androidx.appcompat.app.AppCompatActivity
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.*
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.colorResource
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.aib.base.activity.BaseToolbarActivity
 import com.aib.p2p.R
 import com.aib.p2p.databinding.ActivitySettingsBinding
 import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.PhoneUtils
+import com.blankj.utilcode.util.BarUtils
+import com.blankj.utilcode.util.ToastUtils
 import com.lxj.xpopup.XPopup
-import com.mob.MobSDK
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.android.synthetic.main.activity_settings.*
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 @Route(path = ArouterPath.PATH_SETTINGS)
-class SettingsActivity : BaseToolbarActivity<ActivitySettingsBinding>() {
+class SettingsActivity : AppCompatActivity() {
     @Inject
     lateinit var arouter: ArouterManager
 
-    override fun setTitle(): String = "设置中心"
 
-    override fun getLayoutId(): Int = R.layout.activity_settings
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Scaffold(topBar = {
+                TopAppBar(backgroundColor = colorResource(R.color.colorPrimary)) {
+                    Image(
+                        painter = painterResource(R.drawable.ic_back),
+                        null,
+                        modifier = Modifier
+                            .wrapContentWidth().fillMaxHeight()
+                            .clickable { finish() }
+                            .padding(start = 7.dp, end = 7.dp)
+                    )
+                }
+            }) {
+                Column {
+                    settingItem(R.drawable.icon_more_contact, "联系客服") {
+                        ToastUtils.showShort("联系客服")
+                    }
 
-    override fun initData() {
-        binding.view = this
+                    settingItem(R.drawable.icon_more_sms, "用户反馈") {
+                        ToastUtils.showShort("用户反馈")
+                    }
 
-        //提交反馈意见
-        commitFanKui()
+                    settingItem(R.drawable.icon_more_share, "分享好友") {
+                        ToastUtils.showShort("分享好友")
+                    }
 
-        //分享
-        share()
-    }
-
-    private fun share() {
-        tv_more_share.setOnClickListener {
-            showShare()
+                    settingItem(R.drawable.icon_more_about, "关于我们") {
+                        ToastUtils.showShort("关于我们")
+                    }
+                }
+            }
         }
     }
+}
 
-    private fun showShare() {
-        val oks = OnekeyShare()
-        // title标题，微信、QQ和QQ空间等平台使用
-        oks.setTitle("分享")
-        // titleUrl QQ和QQ空间跳转链接
-        oks.setTitleUrl("http://sharesdk.cn")
-        // text是分享文本，所有平台都需要这个字段
-        oks.text = "我是分享文本"
-        // setImageUrl是网络图片的url
-        oks.setImageUrl("https://hmls.hfbank.com.cn/hfapp-api/9.png")
-        // url在微信、Facebook等平台中使用
-        oks.setUrl("http://sharesdk.cn")
-        // 启动分享GUI
-        oks.show(MobSDK.getContext())
-    }
-
-    private var department = "不明确"
-
-    private fun commitFanKui() {
-        tv_more_fankui.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                //提供一个View
-                val view = View.inflate(this@SettingsActivity, R.layout.view_fankui, null)
-                val rg = view.findViewById(R.id.rg_fankui) as RadioGroup
-                val et_fankui_content = view.findViewById(R.id.et_fankui_content) as EditText
-
-                rg.setOnCheckedChangeListener(object : RadioGroup.OnCheckedChangeListener {
-                    override fun onCheckedChanged(group: RadioGroup, checkedId: Int) {
-                        val rb = rg.findViewById(checkedId) as RadioButton
-                        department = rb.getText().toString()
-                    }
-                })
-            }
-        })
-    }
-
-    //联系客服
-    fun contactService() {
-        XPopup.Builder(this)
-                .asConfirm("联系客服", "联系客服：1536006XXXX", {
-//                    PhoneUtils.call(phone)
-                }, {
-
-                }).show()
-    }
-
-    /**
-     * 关于
-     */
-    fun about() {
-        arouter.openNext(ArouterPath.PATH_ABOUT_US)
+@Composable
+fun settingItem(tipIcon: Int, text: String, onClick: () -> Unit) {
+    Row(
+        modifier = Modifier
+            .fillMaxWidth().height(50.dp)
+            .clickable { onClick() }
+            .padding(start = 15.dp, end = 15.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        Image(
+            painter = painterResource(tipIcon),
+            null
+        )
+        Text(
+            text,
+            color = Color.Black,
+            fontSize = 16.sp,
+            modifier = Modifier.padding(start = 20.dp)
+        )
     }
 }

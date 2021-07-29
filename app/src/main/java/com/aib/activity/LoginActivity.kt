@@ -4,8 +4,7 @@ import androidx.activity.viewModels
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
 import com.aib.base.activity.BaseToolbarActivity
-import com.aib.bean.UserBean
-import com.aib.expand.showDialog
+import com.aib.widget.showDialog
 import com.aib.net.Status
 import com.aib.p2p.R
 import com.aib.sdk.arouter.ArouterKey
@@ -13,7 +12,6 @@ import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.aib.sdk.event.EventCode
 import com.aib.sdk.event.EventData
-import com.aib.sdk.sp.SpKeyConstant
 import com.aib.viewmodel.LoginViewModel
 import com.alibaba.android.arouter.facade.annotation.Autowired
 import com.alibaba.android.arouter.facade.annotation.Route

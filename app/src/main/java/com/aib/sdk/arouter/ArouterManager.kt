@@ -27,10 +27,6 @@ class ArouterManager @Inject constructor(
         ARouter.getInstance().build(ArouterPath.PATH_MAIN).navigation()
     }
 
-    fun openAboutUs() {
-        ARouter.getInstance().build(ArouterPath.PATH_ABOUT_US).navigation()
-    }
-
     fun openRegister() {
         ARouter.getInstance().build(ArouterPath.PATH_REGISTER).navigation()
     }

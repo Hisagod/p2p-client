@@ -7,20 +7,11 @@ object ArouterPath {
     const val PATH_LOGIN = PATH_APP + "LoginActivity"
     const val PATH_MAIN = PATH_APP + "MainActivity"
 
-    //关于我们
-    const val PATH_ABOUT_US = PATH_APP + "AboutActivity"
-
     //设置中心
     const val PATH_SETTINGS = PATH_APP + "SettingsActivity"
 
-    //充值
-    const val PATH_RECHARGE = PATH_APP + "ChongZhiActivity"
-
     //用户信息
     const val PATH_USER_INFO = PATH_APP + "UserInfoActivity"
-
-    //提现中心
-    const val PATH_WITHDRAW = PATH_APP + "TiXianActivity"
 
     //首页
     const val PATH_HOME_PAGE = PATH_APP + "HomeFragment"
