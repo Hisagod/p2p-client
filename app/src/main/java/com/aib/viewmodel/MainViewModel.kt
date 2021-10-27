@@ -18,19 +18,19 @@ class MainViewModel @Inject constructor(
     private val mainRep: MainRepository
 ) : ViewModel() {
 
-    val mainData = MutableLiveData<Resource<HomeBean>>(Resource.loading(null))
+    val mainData = MutableLiveData<Resource<HomeBean>>()
 
     /**
-     * 获取Banner数据
+     * 获取首页数据
      */
     fun getHome() {
-//        mainData.value = Resource.loading(null)
+        mainData.value = Resource.loading(mainData.value?.data)
         viewModelScope.launch {
-            runCatching {
+            try {
                 val bean = mainRep.loadHomeDataFromNet().convert()
-//                mainData.value = Resource.success(bean)
-            }.onFailure {
-//                mainData.value = Resource.error(it.message ?: "加载失败", null)
+                mainData.value = Resource.success(bean)
+            } catch (e: Exception) {
+                mainData.value = Resource.error(e.message ?: "加载失败", null)
             }
         }
     }
