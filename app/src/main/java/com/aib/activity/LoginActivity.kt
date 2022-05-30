@@ -1,12 +1,13 @@
 package com.aib.activity
 
 import androidx.activity.viewModels
-import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.lifecycleScope
 import com.aib.base.activity.BaseToolbarActivity
 import com.aib.widget.showDialog
 import com.aib.net.Status
 import com.aib.p2p.R
+import com.aib.p2p.databinding.ActivityLoginBinding
 import com.aib.sdk.arouter.ArouterKey
 import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
@@ -18,7 +19,6 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.alibaba.android.arouter.launcher.ARouter
 import com.blankj.utilcode.util.*
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_login.*
 import org.greenrobot.eventbus.EventBus
 import javax.inject.Inject
 
@@ -27,7 +27,7 @@ import javax.inject.Inject
  */
 @Route(path = ArouterPath.PATH_LOGIN)
 @AndroidEntryPoint
-class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
+class LoginActivity : BaseToolbarActivity<ActivityLoginBinding>() {
 
     @JvmField
     @Autowired(name = ArouterKey.KEY_PATH)
@@ -43,59 +43,57 @@ class LoginActivity : BaseToolbarActivity<ViewDataBinding>() {
     override fun getLayoutId(): Int = R.layout.activity_login
 
     override fun initData() {
-        login()
-        register()
+        binding.view = this
     }
-
 
     /**
      * 注册
      */
-    private fun register() {
-        tv_register.setOnClickListener {
-            ARouter.getInstance().build(ArouterPath.PATH_REGISTER).navigation()
-        }
+    fun userRegister() {
+        ARouter.getInstance().build(ArouterPath.PATH_REGISTER).navigation()
     }
 
-    private fun login() {
-        btn_login.setOnClickListener {
-            val phone = et_phone.text.toString().trim()
-            if (phone.isEmpty()) {
-                ToastUtils.showShort("请输入账号")
-                return@setOnClickListener
-            }
+    /**
+     * 登录
+     */
+    fun userLogin() {
+        val phone = binding.etPhone.text.toString().trim()
+        if (phone.isEmpty()) {
+            ToastUtils.showShort("请输入账号")
+            return
+        }
 
-            if (!RegexUtils.isMobileExact(phone)) {
-                ToastUtils.showShort("请输入正确手机号")
-                return@setOnClickListener
-            }
+        if (!RegexUtils.isMobileExact(phone)) {
+            ToastUtils.showShort("请输入正确手机号")
+            return
+        }
 
-            val pwd = et_pwd.text.toString().trim()
-            if (phone.isEmpty()) {
-                ToastUtils.showShort("请输入密码")
-                return@setOnClickListener
-            }
+        val pwd = binding.etPwd.text.toString().trim()
+        if (phone.isEmpty()) {
+            ToastUtils.showShort("请输入密码")
+            return
+        }
 
-            showDialog { dialog ->
-                vm.login(phone, EncryptUtils.encryptMD5ToString(pwd)).observe(this, Observer {
-                    when (it.status) {
-                        Status.LOAD -> TODO()
-                        Status.SUCCESS -> {
-                            dialog.dismiss()
-                            EventBus.getDefault().postSticky(EventData(EventCode.CODE_UPDATE_USER, null))
-                            path?.let { nextPath ->
-                                arouter.openNext(nextPath)
-                            }
-                            finish()
+        showDialog { dialog ->
+            vm.login(phone, EncryptUtils.encryptMD5ToString(pwd)).observe(this, Observer {
+                when (it.status) {
+                    Status.LOAD -> TODO()
+                    Status.SUCCESS -> {
+                        dialog.dismiss()
+                        EventBus.getDefault()
+                            .postSticky(EventData(EventCode.CODE_UPDATE_USER, null))
+                        path?.let { nextPath ->
+                            arouter.openNext(nextPath)
                         }
-                        Status.ERROR -> {
-                            dialog.dismiss()
-                            ToastUtils.showShort(it.message)
-                        }
-                        Status.EMPTY -> TODO()
+                        finish()
                     }
-                })
-            }
+                    Status.ERROR -> {
+                        dialog.dismiss()
+                        ToastUtils.showShort(it.message)
+                    }
+                    Status.EMPTY -> TODO()
+                }
+            })
         }
     }
 }

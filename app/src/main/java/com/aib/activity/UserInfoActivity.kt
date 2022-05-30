@@ -21,7 +21,6 @@ import com.zhihu.matisse.MimeType
 import com.zhihu.matisse.engine.impl.GlideEngine
 import com.zhihu.matisse.filter.Filter
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_user_info.*
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -48,14 +47,14 @@ class UserInfoActivity : BaseToolbarActivity<ActivityUserInfoBinding>() {
     }
 
     private fun loadLocalData() {
-        getInstance.loadAvatarLocalPath(iv_avatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
+        getInstance.loadAvatarLocalPath(binding.ivAvatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
     }
 
     /**
      * 打开相册
      */
     private fun openGallery() {
-        tv_user_change.setOnClickListener {
+        binding.tvUserChange.setOnClickListener {
             Matisse.from(this)
                     .choose(MimeType.ofImage())
                     .countable(true)
@@ -84,7 +83,7 @@ class UserInfoActivity : BaseToolbarActivity<ActivityUserInfoBinding>() {
     }
 
     private fun userExit() {
-        btn_exit.setOnClickListener {
+        binding.btnExit.setOnClickListener {
             spManager.clearAllData()
             ARouter.getInstance().build(ArouterPath.PATH_MAIN).navigation()
             finish()

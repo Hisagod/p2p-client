@@ -40,17 +40,17 @@ class MainViewModel @Inject constructor(
      */
     fun getProductList(): LiveData<Resource<List<ProductBean>>> {
         val data = MutableLiveData<Resource<List<ProductBean>>>()
-        data.value = Resource.loading(null)
+        data.value = Resource.loading(null)//加载中
         viewModelScope.launch {
             runCatching {
                 val bean = mainRep.loadProduct().convert()
                 if (bean.isNullOrEmpty()) {
-                    data.value = Resource.empty()
+                    data.value = Resource.empty()//加载数据为空
                 } else {
-                    data.value = Resource.success(bean)
+                    data.value = Resource.success(bean)//加载数据成功
                 }
             }.onFailure {
-                data.value = Resource.error(it.message ?: "加载失败", null)
+                data.value = Resource.error(it.message ?: "加载失败", null)//加载数据失败
             }
         }
         return data

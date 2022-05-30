@@ -7,6 +7,7 @@ import com.aib.base.fragment.BaseLazyFragment
 import com.aib.bean.ProductBean
 import com.aib.net.Status
 import com.aib.p2p.R
+import com.aib.p2p.databinding.FragmentProductlistBinding
 import com.aib.sdk.arouter.ArouterPath
 import com.aib.viewmodel.MainViewModel
 import com.aib.widget.RoundProgress
@@ -14,11 +15,10 @@ import com.alibaba.android.arouter.facade.annotation.Route
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_productlist.*
 
 @AndroidEntryPoint
 @Route(path = ArouterPath.PATH_PRODUCT_PAGE)
-class ProductFragment : BaseLazyFragment<ViewDataBinding>() {
+class ProductFragment : BaseLazyFragment<FragmentProductlistBinding>() {
     private val vm by activityViewModels<MainViewModel>()
     private lateinit var adapter: BaseQuickAdapter<ProductBean, BaseViewHolder>
     override fun getLayoutId(): Int {
@@ -38,7 +38,7 @@ class ProductFragment : BaseLazyFragment<ViewDataBinding>() {
                 holder.getView<RoundProgress>(R.id.p_progresss).progress = item.progress
             }
         }
-        rv.adapter = adapter
+        binding.rv.adapter = adapter
 
         loadData()
     }

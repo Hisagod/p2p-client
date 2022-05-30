@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.databinding.ViewDataBinding
 import com.aib.base.fragment.BaseLazyFragment
 import com.aib.p2p.R
+import com.aib.p2p.databinding.FragmentCenterBinding
 import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.aib.sdk.event.EventCode
@@ -11,10 +12,8 @@ import com.aib.sdk.event.EventData
 import com.aib.sdk.sp.SpKeyConstant
 import com.aib.utils.GlideManager
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.SPStaticUtils
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.fragment_center.*
 import org.greenrobot.eventbus.EventBus
 import org.greenrobot.eventbus.Subscribe
 import org.greenrobot.eventbus.ThreadMode
@@ -22,7 +21,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 @Route(path = ArouterPath.PATH_MINE_PAGE)
-class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
+class CenterFragment : BaseLazyFragment<FragmentCenterBinding>() {
     @Inject
     lateinit var arouter: ArouterManager
 
@@ -46,12 +45,12 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
     }
 
     private fun loadPersonalInfo() {
-        GlideManager.getInstance.loadAvatarNetPath(iv_avatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
-        tv_me_name.text = SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_NAME)
+        GlideManager.getInstance.loadAvatarNetPath(binding.ivAvatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
+        binding.tvMeName.text = SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_NAME)
     }
 
     private fun openAvatar() {
-        iv_avatar.setOnClickListener {
+        binding.ivAvatar.setOnClickListener {
             arouter.openNext(ArouterPath.PATH_USER_INFO)
         }
     }
@@ -70,13 +69,13 @@ class CenterFragment : BaseLazyFragment<ViewDataBinding>() {
      * 进入用户中心
      */
     private fun enterUserCenter() {
-        rl_me.setOnClickListener {
+        binding.rlMe.setOnClickListener {
             arouter.openNext(ArouterPath.PATH_USER_INFO)
         }
     }
 
     private fun openSettings() {
-        iv_settings.setOnClickListener {
+        binding.ivSettings.setOnClickListener {
             arouter.openNext(ArouterPath.PATH_SETTINGS)
         }
     }

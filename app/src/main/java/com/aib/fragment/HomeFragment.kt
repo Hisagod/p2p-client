@@ -1,6 +1,7 @@
 package com.aib.fragment
 
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
 import com.aib.adapter.RecommonAdapter
 import com.aib.base.fragment.BaseLazyFragment
@@ -17,7 +18,9 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 @Route(path = ArouterPath.PATH_HOME_PAGE)
 class HomeFragment : BaseLazyFragment<FragmentHomeBinding>() {
+    //使用Activity的VM
     private val vm by activityViewModels<MainViewModel>()
+
     private val homeAdapter = BaseBinderAdapter()
 
     override fun getLayoutId(): Int = R.layout.fragment_home

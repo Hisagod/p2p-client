@@ -1,19 +1,13 @@
 package com.aib.activity
 
 import android.os.Bundle
-import android.view.View
-import android.widget.EditText
-import android.widget.RadioButton
-import android.widget.RadioGroup
 import androidx.activity.compose.setContent
 import androidx.appcompat.app.AppCompatActivity
 import androidx.compose.foundation.Image
-import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.*
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -21,18 +15,12 @@ import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.aib.base.activity.BaseToolbarActivity
 import com.aib.p2p.R
-import com.aib.p2p.databinding.ActivitySettingsBinding
 import com.aib.sdk.arouter.ArouterManager
 import com.aib.sdk.arouter.ArouterPath
 import com.alibaba.android.arouter.facade.annotation.Route
-import com.blankj.utilcode.util.BarUtils
 import com.blankj.utilcode.util.ToastUtils
-import com.lxj.xpopup.XPopup
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.android.synthetic.main.activity_settings.*
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -51,7 +39,8 @@ class SettingsActivity : AppCompatActivity() {
                         painter = painterResource(R.drawable.ic_back),
                         null,
                         modifier = Modifier
-                            .wrapContentWidth().fillMaxHeight()
+                            .wrapContentWidth()
+                            .fillMaxHeight()
                             .clickable { finish() }
                             .padding(start = 7.dp, end = 7.dp)
                     )
@@ -83,7 +72,8 @@ class SettingsActivity : AppCompatActivity() {
 fun settingItem(tipIcon: Int, text: String, onClick: () -> Unit) {
     Row(
         modifier = Modifier
-            .fillMaxWidth().height(50.dp)
+            .fillMaxWidth()
+            .height(50.dp)
             .clickable { onClick() }
             .padding(start = 15.dp, end = 15.dp),
         verticalAlignment = Alignment.CenterVertically
