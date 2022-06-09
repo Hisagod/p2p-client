@@ -10,6 +10,7 @@ import com.aib.sdk.arouter.ArouterPath
 import com.aib.sdk.event.EventCode
 import com.aib.sdk.event.EventData
 import com.aib.sdk.sp.SpKeyConstant
+import com.aib.sdk.sp.SpManager
 import com.aib.utils.GlideManager
 import com.alibaba.android.arouter.facade.annotation.Route
 import com.blankj.utilcode.util.SPStaticUtils
@@ -24,6 +25,9 @@ import javax.inject.Inject
 class CenterFragment : BaseLazyFragment<FragmentCenterBinding>() {
     @Inject
     lateinit var arouter: ArouterManager
+
+    @Inject
+    lateinit var sp: SpManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -45,8 +49,11 @@ class CenterFragment : BaseLazyFragment<FragmentCenterBinding>() {
     }
 
     private fun loadPersonalInfo() {
-        GlideManager.getInstance.loadAvatarNetPath(binding.ivAvatar, SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_AVATAR))
-        binding.tvMeName.text = SPStaticUtils.getString(SpKeyConstant.KEY_STRING_USER_NAME)
+        GlideManager.getInstance.loadAvatarNetPath(
+            binding.ivAvatar,
+            sp.getAvatar() ?: ""
+        )
+        binding.tvMeName.text = sp.getNickName()
     }
 
     private fun openAvatar() {
